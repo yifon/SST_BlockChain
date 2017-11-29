@@ -21,7 +21,7 @@ contract BTM is owned{
     mapping (address => int256) private balanceOf;//cg: represent balance of each account
     mapping (address => string) public nameOf;
     mapping (string => address[]) atmsOf;
-    event Withdraw(string _issueBank, string _account, string _pwd, int _amount);
+    event Withdrawal(string _issueBank, string _account, string _pwd, int _amount);
     function BTM(){
         //init some testing data
         //init bank acc
@@ -75,7 +75,7 @@ contract BTM is owned{
     //this function must be only called by the aquiring ATM
     //it broadcast event for an issuing bank ATM to pick the transaction for authorisation
     function withdraw(address _issueBank, string _account, string _pwd, int _amount) external {
-        Withdraw(nameOf[_issueBank],_account,_pwd,_amount);
+        Withdrawal(nameOf[_issueBank],_account,_pwd,_amount);
     }
     
     

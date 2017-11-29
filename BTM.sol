@@ -17,11 +17,12 @@ contract owned {
     }
 }
 
-contract BlockATM is owned{
+contract BTM is owned{
     mapping (address => int256) private balanceOf;//cg: represent balance of each account
     mapping (address => string) public nameOf;
     mapping (string => address[]) atmsOf;
-    function BlockATM(){
+    event Withdraw(string _issueBank, string _account, string _pwd, int _amount);
+    function BTM(){
         //init some testing data
         //init bank acc
         
@@ -47,11 +48,11 @@ contract BlockATM is owned{
     //   mapping (address =>int256) balanceOf;
     //}
     //mapping (address=>BankAtms) bankAtmList;//mapping of bankName - ATMList
-    function addBank(address _bankAdd, string _bankName) external{
+    function addBank(address _bankAdd, string _bankName) external onlyOwner{
         balanceOf[_bankAdd] = 0;
         nameOf[_bankAdd] = _bankName;
     }
-    function addATM(string _bankName, address _atmAdd) external{
+    function addATM(string _bankName, address _atmAdd) external onlyOwner{
         //if(bankAtmList[_bankAdd] == 0){
         //    bankAtmList[_bankAdd] = BankAtms();//assign a new BankAtms 
         //}else{
@@ -67,22 +68,24 @@ contract BlockATM is owned{
         newAdds[oldLength] = _atmAdd;
         atmsOf[_bankName] = newAdds;
     }
-    function getBankAtms(string _bankName) external returns(address[] s){
+    function getBankAtms(string _bankName) external view returns(address[] s){
         return atmsOf[_bankName];
     }
     
-    //this function must be only called from the issuing bank nodes, bcoz need to debit from it!
-    function withdraw(address _fromAtm, address _issueBank, int _amount, int _fee) external {
-        balanceOf[_issueBank] -= (_amount + _fee);//!!must debit before credit!!!
-        balanceOf[_fromAtm] += _amount + _fee;
+    //this function must be only called by the aquiring ATM
+    //it broadcast event for an issuing bank ATM to pick the transaction for authorisation
+    function withdraw(address _issueBank, string _account, string _pwd, int _amount) external {
+        Withdraw(nameOf[_issueBank],_account,_pwd,_amount);
     }
+    
+    
     //get balance of any account - can only be called by owner
-    function getBalance(address _add) external onlyOwner returns (int256) {
+    function getBalance(address _add) external view onlyOwner returns (int256) {
         return balanceOf[_add];
     }
     
     //return myself's balance who call's this
-    function myBalance() external returns (int256){
+    function myBalance() external view returns (int256){
         return balanceOf[msg.sender];
     }
     

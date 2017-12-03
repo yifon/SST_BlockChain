@@ -22,6 +22,9 @@ BTM contract is the central contract that connect all node contracts<br><br>
 I have writted a test script to test a bank2 customer perform CWD on ATM1. Pls use:<br>
 /home/charles/quorum-examples/examples/7nodes/ATMnode2.js to start the node2 contract;<br>
 /home/charles/quorum-examples/examples/7nodes/ATMnode1.js to start the node1 contract<br>
+<br><br>
+
+Please refer to diagram.xlsx for the sequence diagram of withdrawal transaction.
 
 
 

@@ -1,7 +1,7 @@
 # SST_BlockChain
 
 Charles [20171203]: I have setup a private quorum chain with 3 nodes at /home/charles/quorum-examples/examples/7nodes. <br>
-You can start the 3 nodes by calling /home/charles/quorum-examples/examples/7nodes/my-raft-start.sh
+You can start the 3 nodes by calling /home/charles/quorum-examples/examples/7nodes/my-raft-start.sh. Please remember to unlock all nodes' coinbase account before using the contracts.
 <br><br>
 
 I have also setup 2 bank and 2 ATM accounts, addresses:<br>
@@ -21,7 +21,7 @@ BTM contract is the central contract that connect all node contracts<br><br>
 
 I have writted a test script to test a bank2 customer perform CWD on ATM1. Pls use:<br>
 /home/charles/quorum-examples/examples/7nodes/ATMnode2.js to start the node2 contract;<br>
-/home/charles/quorum-examples/examples/7nodes/ATMnode1.js to start the node2 contract<br>
+/home/charles/quorum-examples/examples/7nodes/ATMnode1.js to start the node1 contract<br>
 
 
 

@@ -1,8 +1,12 @@
 ContractNode = {
+  //init the node contract
+  //contractfile - name prefix of .ABI and .bin file
+  //web3http - the web3 http link
+  //add - the contract address
+  //callback - the callback when contract is inited
+  //authorisedCallback - the callback when authorisation completes
 
-
-
-  initContract : function(contractfile, web3http, add,callback,web3){
+  initContract : function(contractfile, web3http, add,callback,authorisedCallback, cwdRequestCallback){
     console.log("initContract");
 
     var http = require('http');
@@ -45,11 +49,14 @@ ContractNode = {
           var event = nodeContract.WithdrawalAuthorisation();
           event.watch(function(err,res){
             if(!err){
-              console.log("WithdrawalAuthorisation："+res.address);
+              console.log("WithdrawalAuthorisation arrived at contract："+res.address);
               console.log(res.args);
+              authorisedCallback(res.args);
+
             }else{
               console.log(err);
             }
+                
             
           });
 
@@ -58,13 +65,10 @@ ContractNode = {
           var event = nodeContract.WithdrawalRequest();
           event.watch(function(err,res){
             if(!err){
-              console.log("WithdrawalRequest："+res.address);
+              console.log("WithdrawalRequest arrived at contract："+res.address);
               console.log(res.args);
-              //to call atmp 
-              //authorised: function(_fromAtm, _issueBank, trxHash, status, _amount,int fee)
-              //authorised();//to simulate atmp response
-              var hash=nodeContract.startAuthorise(res.args._fromAtm,"0xed9d02e382b34818e88b88a309c7fe71e65f419d",res.args.trxHash,"1000",res.args._amount,2, {from: web3.eth.coinbase, gas: 0x47b760});
-              console.log(hash);
+              cwdRequestCallback (nodeContract, res.args, web3);
+              
               //startAuthorise(address _fromAtm, address _issueBank, string trxHash, int status, int _amount,int fee) 
             }else{
               console.log(err);
@@ -84,31 +88,38 @@ ContractNode = {
 
     });//end of read abi file
 
-  },//end of initContract
-
-  withdraw : function (trxHash,  _issueBank,  _account,  _pwd,  _amount){
-    
-
-  },//end of withdraw
-
-  authorised: function(_fromAtm, _issueBank, trxHash, status, _amount, fee){
-    //atmp response
-    
-    
-
-  } //end authorised
-
-
+  }//end of initContract
   
 }
 
-ContractNode.initContract("ATMNode", "http://localhost:22002", "0x30a5b162f0c946384d503c1f786f5c04f1b83f79", function(contract,web3){
-  console.log(contract.get());
-  console.log(contract.btm);
 
 
 
-});//from ATM1
+//testing code start here
+
+
+
+
+
+
+//start node 2 to route the withdrawal
+new ContractNode.initContract("ATMNode", "http://localhost:22002", "0x30a5b162f0c946384d503c1f786f5c04f1b83f79", function(contract,web3){
+  console.log("ATM node 2 started as router, contract add: 0x30a5b162f0c946384d503c1f786f5c04f1b83f79");
+  //console.log(contract.get());
+  //console.log(contract.btm);
+
+  },
+  function (args){//to handle authorise complete thing:
+    console.log("ATM node 2: authorised callback:");
+    console.log(args);
+
+  },
+  function (contract, args, web3){//to handle WithdrawalRequest event, to start authorisation with ATMP
+    var hash=contract.startAuthorise(args._fromAtm,"0xed9d02e382b34818e88b88a309c7fe71e65f419d",args.trxHash,"1001",args._amount,2, {from: web3.eth.coinbase, gas: 0x47b760});
+    console.log("start auth:"+hash);
+  }
+
+);//from ATM2
 
 
 

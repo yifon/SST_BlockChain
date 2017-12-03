@@ -9,13 +9,13 @@ GLOBAL_ARGS="--raft --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,ne
 sleep 1
 
 echo "[*] Starting node 1"
- nohup geth --datadir qdata/dd1 $GLOBAL_ARGS --raftport 50401 --rpcport 22000 --port 21000 --unlock 0 --password passwords.txt 2>>qdata/logs/1.log &
+ nohup geth --datadir qdata/dd1 $GLOBAL_ARGS --raftport 50401 --rpcport 22000 --port 21000 --unlock 0 --password cen123.txt 2>>qdata/logs/1.log &
 
 echo "[*] Starting node 2"
-nohup geth --datadir qdata/dd2 $GLOBAL_ARGS --raftport 50402 --rpcport 22001 --port 21001 2>>qdata/logs/2.log &
+nohup geth --datadir qdata/dd2 $GLOBAL_ARGS --raftport 50402 --rpcport 22001 --port 21001 --unlock 0 --password passwords.txt 2>>qdata/logs/2.log &
 
 echo "[*] Starting node 3"
- nohup geth --datadir qdata/dd3 $GLOBAL_ARGS --raftport 50403 --rpcport 22002 --port 21002 2>>qdata/logs/3.log &
+ nohup geth --datadir qdata/dd3 $GLOBAL_ARGS --raftport 50403 --rpcport 22002 --port 21002 --unlock 0 --password cen123.txt 2>>qdata/logs/3.log &
 
 
 

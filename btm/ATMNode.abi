@@ -1,0 +1,243 @@
+[
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fromAtm",
+          "type": "address"
+        },
+        {
+          "name": "_issueBank",
+          "type": "address"
+        },
+        {
+          "name": "trxHash",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "int256"
+        },
+        {
+          "name": "_amount",
+          "type": "int256"
+        },
+        {
+          "name": "fee",
+          "type": "int256"
+        }
+      ],
+      "name": "startAuthorise",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "trxHash",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "int256"
+        },
+        {
+          "name": "fee",
+          "type": "int256"
+        }
+      ],
+      "name": "postAuthorise",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "get",
+      "outputs": [
+        {
+          "name": "x",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getA",
+      "outputs": [
+        {
+          "name": "x",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fromATM",
+          "type": "address"
+        },
+        {
+          "name": "trxHash",
+          "type": "string"
+        },
+        {
+          "name": "_issueBank",
+          "type": "address"
+        },
+        {
+          "name": "_account",
+          "type": "string"
+        },
+        {
+          "name": "_pwd",
+          "type": "string"
+        },
+        {
+          "name": "_amount",
+          "type": "int256"
+        }
+      ],
+      "name": "startWithdraw",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fromAtm",
+          "type": "address"
+        },
+        {
+          "name": "trxHash",
+          "type": "string"
+        },
+        {
+          "name": "_account",
+          "type": "string"
+        },
+        {
+          "name": "_pwd",
+          "type": "string"
+        },
+        {
+          "name": "_amount",
+          "type": "int256"
+        }
+      ],
+      "name": "receiveWithdrawal",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_btm",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "trxHash",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "status",
+          "type": "int256"
+        },
+        {
+          "indexed": false,
+          "name": "fee",
+          "type": "int256"
+        }
+      ],
+      "name": "WithdrawalAuthorisation",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_fromAtm",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "trxHash",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "_account",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "_pwd",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "_amount",
+          "type": "int256"
+        }
+      ],
+      "name": "WithdrawalRequest",
+      "type": "event"
+    }
+  ]

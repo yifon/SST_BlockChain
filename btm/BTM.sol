@@ -34,8 +34,9 @@ contract ATMNode is owned{
     }
 
     //the start point of a CWD, just call BTM contract to start
-    function startWithdraw(string trxHash, address _issueBank, string _account, string _pwd, int _amount) external  onlyOwner{
-        btm.withdraw(msg.sender, trxHash, _issueBank,_account, _pwd, _amount);//also carry the fromATM information
+    function startWithdraw(address _fromATM, string trxHash,  address _issueBank, string _account, string _pwd, int _amount) external  onlyOwner{
+        btm.withdraw(_fromATM, trxHash, _issueBank,_account, _pwd, _amount);//also carry the fromATM information
+        //msg.sender = the address who calling this function, i.e. the ATMnode js coinbase
     }
 
     //to be called by the BTM, to notify the node to start authorisation with ATMP
@@ -56,6 +57,13 @@ contract ATMNode is owned{
         WithdrawalAuthorisation(trxHash, status, fee);
     }
     
+    function get() constant returns (int  x){
+        return 123;
+        
+    }
+    function getA() constant returns (int x){
+        return btm.get();
+    }
 }
 
 contract BTM is owned{
@@ -132,5 +140,9 @@ contract BTM is owned{
     function myBalance() external view returns (int256){
         return balanceOf[msg.sender];
     }
+    function get() pure returns (int a){
+        return 456;
+    }
+    function 
     
 }

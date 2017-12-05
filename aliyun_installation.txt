@@ -1,6 +1,6 @@
-node.js:
+﻿node.js:
 
-用以下命令来升级系统，并且安装一些Node.JS必要的包。
+
 
 root@ubuntu-15:~# apt-get update
 root@ubuntu-15:~# apt-get install python gcc make g++
@@ -12,4 +12,21 @@ cd node-v8.9.1
 make install
 
 
+
+
+
+wget https://www.golangtc.com/static/go/1.9.2/go1.9.2.linux-amd64.tar.gz
+tar -xzvf go1.9.2.linux-amd64.tar.gz
+mv go /usr/local/
+cp /usr/local/go/bin/* /usr/bin/
+
+apt-get install git
+
+git clone https://github.com/jpmorganchase/quorum.git
+cd quorum
+make all
+
+cp build/bin/* /usr/bin/
+
+npm install web3@0.19
 

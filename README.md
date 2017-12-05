@@ -31,6 +31,10 @@ I have writted a test script to test a bank2 customer perform CWD on ATM1. Pls u
 Please refer to diagram.xlsx for the sequence diagram of withdrawal transaction.
 
 A!c102345
+<br><br><br>
+Charles[20171205]
+Deployed 7 nodes:
+
 
 
 

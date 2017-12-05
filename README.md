@@ -41,7 +41,7 @@ RPC port: 7101
 Raftport: 7201
 Port: 7301
 <br><br>
-119.23.28.88 for Bank A ATMs:<br>
+119.23.28.88 for Bank A ATMs: now can test ATMnode1.js<br>
 Node2: repsenting ATM1 of BankA<br>
 Folder: qdata/dd2 (this node currently cannot be started due to unknown issue)
 RPC port: 7101
@@ -54,7 +54,7 @@ RPC port: 7102
 Raftport: 7202
 Port: 7302
 <br><br>
-120.79.43.12 for Bank B ATMs:<br>
+120.79.43.12 for Bank B ATMs:now can test ATMnode2.js<br><br>
 Node4: representing ATM1 of BankB<br>
 Folder: qdata/dd4
 RPC port: 7101

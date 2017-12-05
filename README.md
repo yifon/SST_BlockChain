@@ -32,77 +32,77 @@ Please refer to diagram.xlsx for the sequence diagram of withdrawal transaction.
 
 A!c102345
 <br><br><br>
-Charles[20171205] Deployed 7 nodes in Aliyun:
+Charles[20171205] Deployed 7 nodes in Aliyun:<br><br>
 
-119.23.12.79 for BTM contract owner:
-Node1: representing contract owner, or the card association
+119.23.12.79 for BTM contract owner:<br>
+Node1: representing contract owner, or the card association<br>
 Folder: qdata/dd1
 RPC port: 7101
 Raftport: 7201
 Port: 7301
-
-119.23.28.88 for Bank A ATMs:
-Node2: repsenting ATM1 of BankA
+<br><br>
+119.23.28.88 for Bank A ATMs:<br>
+Node2: repsenting ATM1 of BankA<br>
 Folder: qdata/dd2 (this node currently cannot be started due to unknown issue)
 RPC port: 7101
 Raftport: 7201
 Port: 7301
-
-Node3: representing ATM2 of BankA
+<br><br>
+Node3: representing ATM2 of BankA<br>
 Folder: qdata/dd3
 RPC port: 7102
 Raftport: 7202
 Port: 7302
-
-120.79.43.12 for Bank B ATMs:
-Node4: representing ATM1 of BankB
+<br><br>
+120.79.43.12 for Bank B ATMs:<br>
+Node4: representing ATM1 of BankB<br>
 Folder: qdata/dd4
 RPC port: 7101
 Raftport: 7201
 Port: 7301
-
-Node5: representing ATM2 of BankB
+<br><br>
+Node5: representing ATM2 of BankB<br>
 Folder: qdata/dd5
 RPC port: 7102
 Raftport: 7202
 Port: 7302
-
-120.79.41.102 for Bank C ATMs:
-Node6: representing ATM1 of BankC
+<br><br>
+120.79.41.102 for Bank C ATMs:<br>
+Node6: representing ATM1 of BankC<br>
 Folder: qdata/dd6
 RPC port: 7101
 Raftport: 7201
 Port: 7301
-
-Node7: representing ATM2 of BankC
+<br><br>
+Node7: representing ATM2 of BankC<br>
 Folder: qdata/dd7
 RPC port: 7102
 Raftport: 7202
 Port: 7302
 <br><br>
 
-Acccount addresses (on Node1):
-BTM (representing central bank): "0x8c632e1968c26ecc1f8fa82ac5cf9c4e1ea5884a"
-Bank1: 0x01751f1b5a22aaee0824d68b888f2190a663d768
-Bank2: 0x8bdce7b955646a7c620565be1117edb77c101e9b
+Acccount addresses (on Node1):<br><br>
+BTM (representing central bank): "0x8c632e1968c26ecc1f8fa82ac5cf9c4e1ea5884a"<br>
+Bank1: 0x01751f1b5a22aaee0824d68b888f2190a663d768<br>
+Bank2: 0x8bdce7b955646a7c620565be1117edb77c101e9b<br>
 Bank3: 0xed9d02e382b34818e88b88a309c7fe71e65f419d
 <br><br>
 
 BTM contract add: 0x10e5ac94df610a5ff6a812160a5067fd845a2da1 - It's created on Node1
 <br>
 
-Bank1:
-ATM1: cannot be started so far
-ATM2: 0x44b9a0b0f244be1375f907118be1751f8e0bb0cf - It's created on Node3
-
-Bank2:
-ATM1: 0x9186eb3d20cbd1f5f992a950d808c4495153abd5 - created on Node4
-ATM2: 0x0638e1574728b6d862dd5d3a3e0942c3be47d996 - created on Node5
-
-Bank3:
-ATM1: 0xfc1cb1978f2435c8f2564d2c801f399d11479d0f - created on Node6
-ATM2: 0xc2376f4675a774f120ea688c4756ae49a7020ccd - created on Node7
-
+Bank1:<br>
+ATM1: cannot be started so far<br>
+ATM2: 0x44b9a0b0f244be1375f907118be1751f8e0bb0cf - It's created on Node3<br>
+<br>
+Bank2:<br>
+ATM1: 0x9186eb3d20cbd1f5f992a950d808c4495153abd5 - created on Node4<br>
+ATM2: 0x0638e1574728b6d862dd5d3a3e0942c3be47d996 - created on Node5<br>
+<br><br>
+Bank3:<br>
+ATM1: 0xfc1cb1978f2435c8f2564d2c801f399d11479d0f - created on Node6<br>
+ATM2: 0xc2376f4675a774f120ea688c4756ae49a7020ccd - created on Node7<br>
+<br>
 
 
 

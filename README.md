@@ -5,10 +5,17 @@ You can start the 3 nodes by calling /home/charles/quorum-examples/examples/7nod
 <br><br>
 
 I have also setup 2 bank and 2 ATM accounts, addresses:<br>
-bank1: 0x353c1c4aa32e54ae8278403d27e287c4b43ffdf1 <br>
-bank2: 0xed9d02e382b34818e88b88a309c7fe71e65f419d <br>
-ATM1: 0xb6d55e2e50e8cfbaf87ad6f0e29fbf663104a590 <br>
-ATM2: 0x30a5b162f0c946384d503c1f786f5c04f1b83f79 <br>
+
+
+bank1: 0xce47a89d676d891b7adbc6812749c73fcf600484<br>
+bank2: 0xed9d02e382b34818e88b88a309c7fe71e65f419d<br>
+
+BTM contract add: 0xf1d8A2906F215d31f7D46A430D1b1A4Ddf05F1E6<br>
+
+ATM node1 contract add: 0x341ed42cdfb13b897a198cd1c87ddf070e25e6a1<br>
+ATM node2 contract add: 0xd04a44f8b502fcfd5cd6d131b7d1b298b9501966<br>
+
+
 
 ATM1 belongs to bank1; ATM2 belongs to bank2<br>
 

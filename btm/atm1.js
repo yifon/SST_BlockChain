@@ -107,7 +107,7 @@ ContractNode = {
 
 
 //start node 1 and start a withdrawal
-function atmNode1(txn) {
+function atm1(txn) {
   // new ContractNode.initContract("ATMNode", "http://localhost:22001", "0xb6d55e2e50e8cfbaf87ad6f0e29fbf663104a590", function (contract, web3) {
     //[June]Define the constant in atmc part directly
     new ContractNode.initContract(txn.contractName, txn.host,txn.contractAddress, function (contract, web3) {
@@ -131,7 +131,7 @@ function atmNode1(txn) {
 
   );//from ATM1
 }
-module.exports=atmNode1;//[June]-->atm1 node
+module.exports=atm1;//[June]-->atm1 node
 
 
 

@@ -19,10 +19,7 @@ ATM node2 contract add: 0xd04a44f8b502fcfd5cd6d131b7d1b298b9501966<br>
 
 ATM1 belongs to bank1; ATM2 belongs to bank2<br>
 
-The 3 contracts address: <br>
-BTM contract add: 0xdc9ea98de223db81143c50287dad58b10197ba73 <br>
-ATM node1 contract add: 0xb6d55e2e50e8cfbaf87ad6f0e29fbf663104a590 <br>
-ATM node2 contract add: 0x30a5b162f0c946384d503c1f786f5c04f1b83f79 <br>
+
 
 BTM contract is the central contract that connect all node contracts<br><br>
 

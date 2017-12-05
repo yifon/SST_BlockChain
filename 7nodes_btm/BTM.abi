@@ -1,0 +1,252 @@
+[
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_bankAdd",
+          "type": "address"
+        },
+        {
+          "name": "_atmAdd",
+          "type": "address"
+        }
+      ],
+      "name": "addATM",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fromAtm",
+          "type": "address"
+        },
+        {
+          "name": "_issueBank",
+          "type": "address"
+        },
+        {
+          "name": "trxHash",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "int256"
+        },
+        {
+          "name": "_amount",
+          "type": "int256"
+        },
+        {
+          "name": "fee",
+          "type": "int256"
+        }
+      ],
+      "name": "startAuthorise",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "get",
+      "outputs": [
+        {
+          "name": "a",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_fromAtm",
+          "type": "address"
+        },
+        {
+          "name": "trxHash",
+          "type": "string"
+        },
+        {
+          "name": "_issueBank",
+          "type": "address"
+        },
+        {
+          "name": "_account",
+          "type": "string"
+        },
+        {
+          "name": "_pwd",
+          "type": "string"
+        },
+        {
+          "name": "_amount",
+          "type": "int256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_bankAdd",
+          "type": "address"
+        },
+        {
+          "name": "_bankName",
+          "type": "string"
+        }
+      ],
+      "name": "addBank",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_bankAdd",
+          "type": "address"
+        }
+      ],
+      "name": "getBankAtms",
+      "outputs": [
+        {
+          "name": "s",
+          "type": "address[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "myBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "nameOf",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_add",
+          "type": "address"
+        }
+      ],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_issueBank",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "_account",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "_pwd",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "_amount",
+          "type": "int256"
+        }
+      ],
+      "name": "Withdrawal",
+      "type": "event"
+    }
+  ]

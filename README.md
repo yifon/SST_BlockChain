@@ -41,7 +41,7 @@ RPC port: 7101
 Raftport: 7201
 Port: 7301
 <br><br>
-119.23.28.88 for Bank A ATMs:<br>
+119.23.28.88 for Bank A ATMs: now can test ATMnode1.js<br>
 Node2: repsenting ATM1 of BankA<br>
 Folder: qdata/dd2 (this node currently cannot be started due to unknown issue)
 RPC port: 7101
@@ -54,7 +54,7 @@ RPC port: 7102
 Raftport: 7202
 Port: 7302
 <br><br>
-120.79.43.12 for Bank B ATMs:<br>
+120.79.43.12 for Bank B ATMs:now can test ATMnode2.js<br><br>
 Node4: representing ATM1 of BankB<br>
 Folder: qdata/dd4
 RPC port: 7101
@@ -88,12 +88,12 @@ Bank2: 0x8bdce7b955646a7c620565be1117edb77c101e9b<br>
 Bank3: 0xed9d02e382b34818e88b88a309c7fe71e65f419d
 <br><br>
 
-BTM contract add: 0x10e5ac94df610a5ff6a812160a5067fd845a2da1 - It's created on Node1
+BTM contract add: 0x02de28d224c23b5aeff3561fbdf7a6ef15212344 - It's created on Node1
 <br>
 
 Bank1:<br>
-ATM1: cannot be started so far<br>
-ATM2: 0x44b9a0b0f244be1375f907118be1751f8e0bb0cf - It's created on Node3<br>
+ATM1: 0xca843569e3427144cead5e4d5999a3d0ccf92b8e - Node2<br>
+ATM2: 0x81743ae6efb798ae288fa724aace76dcf8835e37 - It's created on Node3<br>
 <br>
 Bank2:<br>
 ATM1: 0x9186eb3d20cbd1f5f992a950d808c4495153abd5 - created on Node4<br>
@@ -102,7 +102,9 @@ ATM2: 0x0638e1574728b6d862dd5d3a3e0942c3be47d996 - created on Node5<br>
 Bank3:<br>
 ATM1: 0xfc1cb1978f2435c8f2564d2c801f399d11479d0f - created on Node6<br>
 ATM2: 0xc2376f4675a774f120ea688c4756ae49a7020ccd - created on Node7<br>
-<br>
+<br><br>
 
 
+ATMnode1.js - ATMnode6.js will add listener to all nodes to handle the contract events<br>
+trf.js - to test transfer：perform at Bank1 ATM01, debit account: bank2; credit account: bank3.
 

@@ -1,0 +1,45 @@
+Physical Server1 (119.23.12.79):
+Port 1: Xbank ATMP
+Port 2: Ybank ATMP
+Port 3: Zbank ATMP
+Port 4: Screen server
+BTM:
+RPC Port 7101:
+Raftport port: 7201
+Port: 7301
+
+
+
+Physical Server2 (119.23.28.88):
+Xbank ATM1:
+RPC Port 7101:
+Raftport port: 7201
+Port: 7301
+
+Xbank ATM2
+RPC Port 7102:
+Raftport port: 7202
+Port: 7302
+
+
+Physical Server3 (120.79.43.12)
+Ybank ATM1:
+RPC Port 7101:
+Raftport port: 7201
+Port: 7301
+
+Ybank ATM2
+RPC Port 7102:
+Raftport port: 7202
+Port: 7302
+
+Physical Server4 (120.79.41.102):
+Zbank ATM1:
+RPC Port 7101:
+Raftport port: 7201
+Port: 7301
+
+Zbank ATM2
+RPC Port 7102:
+Raftport port: 7202
+Port: 7302

@@ -52,16 +52,8 @@ Deployer ={
 
     });//end of read abi file
 
-  },//end of initContract
+  }//end of initContract
 
-  addBank : function(btmContract, add,  name){
-    //addBank(address _bankAdd, string _bankName)
-    btmContract.addBank(add, name, {from: web3.eth.coinbase});
-  },
-  addATM : function(btmContract,  _bankAdd,  _atmAdd){
-    //addATM(address _bankAdd, address _atmAdd)
-    btmContract.addATM(_bankAdd, _atmAdd, {from: web3.eth.coinbase});
-  }
 
 
   
@@ -75,7 +67,7 @@ var node4Contract;
 var btm;
 var ownerWeb3;
 
-Deployer.initContract("BTM", "http://localhost:7101","0x10e5ac94df610a5ff6a812160a5067fd845a2da1", function(theContract, web3){//node1 contract
+Deployer.initContract("BTM", "http://localhost:7101","0x02de28d224c23b5aeff3561fbdf7a6ef15212344", function(theContract, web3){//node1 contract
   btm = theContract;///
   ownerWeb3 = web3;
 
@@ -112,12 +104,23 @@ function start(){
 //Bank3: 0xed9d02e382b34818e88b88a309c7fe71e65f419d
 //BTM contract add: 0x10e5ac94df610a5ff6a812160a5067fd845a2da1
 
-  btm.addBank("0x01751f1b5a22aaee0824d68b888f2190a663d768", "BankA", {from: ownerWeb3.eth.accounts[0]});//must from the owner node
-  btm.addBank("0x8bdce7b955646a7c620565be1117edb77c101e9b", "BankB", {from: ownerWeb3.eth.accounts[0]});//must from the owner node
-  btm.addBank("0xed9d02e382b34818e88b88a309c7fe71e65f419d", "BankB", {from: ownerWeb3.eth.accounts[0]});//must from the owner node
+
 
 /*
-ATM1: 0x44b9a0b0f244be1375f907118be1751f8e0bb0cf
+BTM contract add: 0x10e5ac94df610a5ff6a812160a5067fd845a2da1
+
+BTM owner: "0x8c632e1968c26ecc1f8fa82ac5cf9c4e1ea5884a"
+Bank1: 0x01751f1b5a22aaee0824d68b888f2190a663d768
+Bank2: 0x8bdce7b955646a7c620565be1117edb77c101e9b
+Bank3: 0xed9d02e382b34818e88b88a309c7fe71e65f419d
+
+
+
+
+
+Bank1:
+ATM1: 0xca843569e3427144cead5e4d5999a3d0ccf92b8e
+ATM2: 0x81743ae6efb798ae288fa724aace76dcf8835e37 
 
 Bank2:
 ATM1: 0x9186eb3d20cbd1f5f992a950d808c4495153abd5
@@ -129,15 +132,15 @@ ATM2: 0xc2376f4675a774f120ea688c4756ae49a7020ccd
 */
 
 //bank 1 add an ATM
-  btm.addATM("0x01751f1b5a22aaee0824d68b888f2190a663d768", "0x44b9a0b0f244be1375f907118be1751f8e0bb0cf", {from: ownerWeb3.eth.accounts[0]});//must from the owner node
-  
+  console.log( btm.setBankATM("0x01751f1b5a22aaee0824d68b888f2190a663d768", ["0xca843569e3427144cead5e4d5999a3d0ccf92b8e","0x81743ae6efb798ae288fa724aace76dcf8835e37"], {from: ownerWeb3.eth.accounts[0]}));//must from the owner node
+    
 
 //bank2
-  btm.addATM("0x8bdce7b955646a7c620565be1117edb77c101e9b", "0x9186eb3d20cbd1f5f992a950d808c4495153abd5", {from: ownerWeb3.eth.accounts[0]});//must from the owner node
-  btm.addATM("0x8bdce7b955646a7c620565be1117edb77c101e9b", "0x0638e1574728b6d862dd5d3a3e0942c3be47d996", {from: ownerWeb3.eth.accounts[0]});//must from the owner node
+  console.log(btm.setBankATM("0x8bdce7b955646a7c620565be1117edb77c101e9b", ["0x9186eb3d20cbd1f5f992a950d808c4495153abd5","0x0638e1574728b6d862dd5d3a3e0942c3be47d996"], {from: ownerWeb3.eth.accounts[0]}));//must from the owner node
+  
 //bank3
-  btm.addATM("0xed9d02e382b34818e88b88a309c7fe71e65f419d", "0xfc1cb1978f2435c8f2564d2c801f399d11479d0f", {from: ownerWeb3.eth.accounts[0]});//must from the owner node
-  btm.addATM("0xed9d02e382b34818e88b88a309c7fe71e65f419d", "0xc2376f4675a774f120ea688c4756ae49a7020ccd", {from: ownerWeb3.eth.accounts[0]});//must from the owner node
+  console.log(btm.setBankATM("0xed9d02e382b34818e88b88a309c7fe71e65f419d", ["0xfc1cb1978f2435c8f2564d2c801f399d11479d0f","0xc2376f4675a774f120ea688c4756ae49a7020ccd"], {from: ownerWeb3.eth.accounts[0]}));//must from the owner node
+  
 
 
 //BTM contract add: 0xdc9ea98de223db81143c50287dad58b10197ba73

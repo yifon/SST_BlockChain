@@ -1,11 +1,7 @@
-1. enter to /home/charles/ATMC/bank_atms_routes/    type'node app.js'  tp start bank_atms_routes
+1. enter to ' cd /home/charles/ATMC/bank_atms_routes/ '   type'node app.js'  on 39.108.142.194
 
-2. enter to  /home/charles/ATMC/hase_atmc_A01/    type'node app.js'  tp start hase_atmc_A01
+2. enter to ' /home/charles/ATMC/hase_atmc_A01/  '  type'node app.js'  tp start hase_atmc_A01
 
-3. enter to  /home/charles/ATMC/hsbc_atmc_A01/    type'node app.js'  tp start hsbc_atmc_A01
+3. enter to  ' /home/charles/ATMC/hsbc_atmc_A01/  '  type'node app.js'  tp start hsbc_atmc_A01
 
-4. start the nodes in geth 
 
-5. enter to  /home/charles/ATMC/hase_atmc_A01/    type'node listener.js'  tp start hase_atmc_A01 listener
-
-6. enter to  /home/charles/ATMC/hsbc_atmc_A01/    type'node listener.js'  tp start hsbc_atmc_A01 listener

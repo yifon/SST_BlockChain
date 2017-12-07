@@ -19,7 +19,7 @@ ContractNode = {
 
     
     web3 = new Web3(new Web3.providers.HttpProvider(web3http));//pls note the port to be deployed, one port = one instance, different nodes may have different behaviors   
-
+web3.personal.unlockAccount(web3.eth.accounts[0],'',0);
 
     fs.readFile(contractfile+".json", 'utf8',function(err,data){//contractAdd.txt contain the contract address
       var json = JSON.parse(data);

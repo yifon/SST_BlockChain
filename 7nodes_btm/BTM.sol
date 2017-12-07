@@ -54,11 +54,11 @@ contract BTM is owned{
         if(_status == STATUS_OK){
             //do nth but wait to check credit information
         }else{//no need to check credit, can commit transaction now (rejection)
-            confirmCredit( _fromAtm,  _debitBank,  _creditBank,  _trxHash,   _amount,  _fee, _status);
+            confirmCredit( _fromAtm,  _debitBank,  _creditBank,  _trxHash,   _amount,  _fee, false, _status);
         }
 
         if(_creditBank == 0x0){//no credit bank - like CWD, just to start confirmCredit
-            confirmCredit( _fromAtm,  _debitBank,  _creditBank,  _trxHash,   _amount,  _fee, _status);
+            confirmCredit( _fromAtm,  _debitBank,  _creditBank,  _trxHash,   _amount,  _fee, true, _status);
         }else{
             var _creditBankAtm = getDestNode(_creditBank);//find an ATM node from the _creditBank
             CheckCredit( _fromAtm,  _debitBank,  _creditBankAtm, _creditBank, _trxHash,   _amount,  _fee);
@@ -67,10 +67,17 @@ contract BTM is owned{
 
     }
     //pls note that this function require _creditBank address, but not _creditBankAtm
-    function confirmCredit(address _fromAtm, address _debitBank, address _creditBank,  string _trxHash, int256 _amount, int256 _fee, int _status) public{
+    function confirmCredit(address _fromAtm, address _debitBank, address _creditBank,  string _trxHash, int256 _amount, int256 _fee, bool _feeFrDebitBank, int _status) public{
         if(_status == STATUS_OK){
-            balanceOf[_debitBank] -= (_amount+_fee);
+            
+            balanceOf[_debitBank] -= _amount;
             balanceOf[_creditBank] += _amount;
+            if(_feeFrDebitBank){
+                balanceOf[_debitBank] -= _fee;
+            }else{
+                balanceOf[_creditBank] -= _fee;
+                
+            }
             balanceOf[_fromAtm] += _fee;
         }        
         Commit( _fromAtm,  _debitBank,  _creditBank,  _trxHash,   _amount,  _fee, _status);

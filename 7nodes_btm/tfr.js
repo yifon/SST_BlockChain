@@ -120,7 +120,7 @@ new ContractNode.initContract("BTM", "http://localhost:7101", "0x02de28d224c23b5
   // the callback when init is done
   function(contract,web3){
   
-    console.log(contract);
+    //console.log(contract);
     /*
 Bank1: 0x01751f1b5a22aaee0824d68b888f2190a663d768
 Bank2: 0x8bdce7b955646a7c620565be1117edb77c101e9b
@@ -144,7 +144,8 @@ ATM2: 0xc2376f4675a774f120ea688c4756ae49a7020ccd
     */
     //startTrx(address _fromAtm, address _debitBank, address _creditBank,string _trxHash, int256 _amount, int256 _fee)
     // start a cwd, from bank A ATM01, customer is from bank B
-    contract.startTrx("0xca843569e3427144cead5e4d5999a3d0ccf92b8e", "0x8bdce7b955646a7c620565be1117edb77c101e9b", "0xed9d02e382b34818e88b88a309c7fe71e65f419d","{to : '123',from: '456'}", 100, 2, {from: web3.eth.accounts[0], gas: 0x47b760});
+    var hash = contract.startTrx("0xca843569e3427144cead5e4d5999a3d0ccf92b8e", "0x8bdce7b955646a7c620565be1117edb77c101e9b", "0xed9d02e382b34818e88b88a309c7fe71e65f419d","{to : '123',from: '456'}", 100, 2, {from: web3.eth.accounts[0], gas: 0x47b760});
+    console.log("test: "+ hash);
   //console.log(contract.get());
   //console.log(contract.btm);
 

@@ -7,7 +7,7 @@ BTM:
 RPC Port 7101:
 Raftport port: 7201
 Port: 7301
-
+For retrieve blockchain balance - http:6101 
 
 
 Physical Server2 (119.23.28.88):

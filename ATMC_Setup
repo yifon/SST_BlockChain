@@ -1,7 +1,24 @@
-1. enter to ' cd /home/charles/ATMC/bank_atms_routes/ '   type'node app.js'  on 39.108.142.194
-
-2. enter to ' /home/charles/ATMC/hase_atmc_A01/  '  type'node app.js'  tp start hase_atmc_A01
-
-3. enter to  ' /home/charles/ATMC/hsbc_atmc_A01/  '  type'node app.js'  tp start hsbc_atmc_A01
-
+ atm routes  on 39.108.142.194  node app.js   port 3000
+ 
+ access path :  http://39.108.142.194:3000/
+ 
+ 
+ 
+ Bank A atmc on 119.23.28.88    
+ A001 :   path :  cd /ATMC/bank_a_ATM001/      node app.js     port 6100
+ A002 :   path :  cd /ATMC/bank_a_ATM002/      node app.js     port 6200
+ 
+ Bank B atmc on 120 79.43.12  
+ B001 :   path :  cd /ATMC/bank_b_ATM001/      node app.js     port 6100
+ B002 :   path :  cd /ATMC/bank_b_ATM002/      node app.js     port 6200
+ 
+ Bank a atmc on 119.23.28.88    (not yet deploy)
+ B001 :   path :  cd /ATMC/bank_c_ATM001/      node app.js     port 6100
+ B002 :   path :  cd /ATMC/bank_c_ATM002/      node app.js     port 6200
+ 
+ 
+ atmp webserver path 
+ http://119.23.12.79:8080/Bank_system_A/services/GetBankAccountInfoImp?wsdl
+ http://119.23.12.79:8080/Bank_system_B/services/GetBankAccountInfoImp?wsdl
+ http://119.23.12.79:8080/Bank_system_C/services/GetBankAccountInfoImp?wsdl
 

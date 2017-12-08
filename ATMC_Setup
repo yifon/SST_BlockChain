@@ -12,9 +12,9 @@
  B001 :   path :  cd /ATMC/bank_b_ATM001/      node app.js     port 6100
  B002 :   path :  cd /ATMC/bank_b_ATM002/      node app.js     port 6200
  
- Bank a atmc on 119.23.28.88    (not yet deploy)
- B001 :   path :  cd /ATMC/bank_c_ATM001/      node app.js     port 6100
- B002 :   path :  cd /ATMC/bank_c_ATM002/      node app.js     port 6200
+ Bank a atmc on 120.79.41.102
+ C001 :   path :  cd /ATMC/bank_c_ATM001/      node app.js     port 6100
+ C002 :   path :  cd /ATMC/bank_c_ATM002/      node app.js     port 6200
  
  
  atmp webserver path 

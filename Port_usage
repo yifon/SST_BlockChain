@@ -33,6 +33,8 @@ RPC Port 7102:
 Raftport port: 7202
 Port: 7302
 
+get block transaction records: http port 6101
+
 Physical Server4 (120.79.41.102):
 Cbank ATM1:
 RPC Port 7101:

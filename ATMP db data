@@ -1,0 +1,48 @@
+create database sst_atm; 
+
+use sst_atm;
+
+create table bank_a_accounts 
+(
+id int(11) auto_increment not null primary key,
+cardNumber varchar(26) not null,
+cardHolder varchar(30) not null,
+balance int(11) not null,
+pin int(6) not null
+);
+
+create table bank_b_accounts 
+(
+id int(11) auto_increment not null primary key,
+cardNumber varchar(26) not null,
+cardHolder varchar(30) not null,
+balance int(11) not null,
+pin int(6) not null
+);
+
+create table bank_c_accounts 
+(
+id int(11) auto_increment not null primary key,
+cardNumber varchar(26) not null,
+cardHolder varchar(30) not null,
+balance int(11) not null,
+pin int(6) not null
+);
+
+insert into bank_a_accounts (cardNumber,cardHolder,balance,pin) values("6227467436550860","tom",99145699,123456);
+insert into bank_a_accounts (cardNumber,cardHolder,balance,pin) values("6227476428571352","jack",91236547,123456);
+insert into bank_a_accounts (cardNumber,cardHolder,balance,pin) values("6227483070505456","june",56874522,123456);
+insert into bank_a_accounts (cardNumber,cardHolder,balance,pin) values("6227497208154181","refly",4562145,123456);
+insert into bank_a_accounts (cardNumber,cardHolder,balance,pin) values("6227509233341650","alex",10236547,123456);
+
+insert into bank_b_accounts (cardNumber,cardHolder,balance,pin) values("5227467436550860","collin",9145699,123456);
+insert into bank_b_accounts (cardNumber,cardHolder,balance,pin) values("5227476428571352","allen",91236567,123456);
+insert into bank_b_accounts (cardNumber,cardHolder,balance,pin) values("5227483070505456","limit",56458522,123456);
+insert into bank_b_accounts (cardNumber,cardHolder,balance,pin) values("5227497208154181","driven",4256145,123456);
+insert into bank_b_accounts (cardNumber,cardHolder,balance,pin) values("5227509233341650","zola",19635547,123456);
+
+insert into bank_c_accounts (cardNumber,cardHolder,balance,pin) values("4227467436550860","collin",5145699,123456);
+insert into bank_c_accounts (cardNumber,cardHolder,balance,pin) values("4227476428571352","allen",51236567,123456);
+insert into bank_c_accounts (cardNumber,cardHolder,balance,pin) values("4227483070505456","limit",56458522,123456);
+insert into bank_c_accounts (cardNumber,cardHolder,balance,pin) values("4227497208154181","driven",5256145,123456);
+insert into bank_c_accounts (cardNumber,cardHolder,balance,pin) values("4227509233341650","zola",59635547,123456);

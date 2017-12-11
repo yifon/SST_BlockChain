@@ -1,2 +1,2 @@
-nohup node blockTrx.js >blockTrx.log &
+nohup node blockTrx.js 2>blockTrx.log &
 echo "started block trx records"

@@ -41,19 +41,19 @@ function addLine(index, startId, endId) {
         endTop = endY + endH;
     }
 
-    var line = "<line" + " id=line" + index + " xmlns='http://www.w3.org/2000/svg' stroke='#5bb75b' stroke-width='5' marker-end='url(#arrow)' stroke-dasharray='4,4'></line>";
-    console.log("startX:" + startX);
-    console.log("startY:" + startY);
-    console.log("startW:" + startW);
-    console.log("startH:" + startH);
-    console.log("endX:" + endX);
-    console.log("endY:" + endY);
-    console.log("endW:" + endW);
-    console.log("endH:" + endH);
-    console.log("startLeft:" + startLeft);
-    console.log("startTop:" + startTop);
-    console.log("endLeft:" + endLeft);
-    console.log("endTop:" + endTop);
+    var line = "<line" + " id=line" + index + " xmlns='http://www.w3.org/2000/svg' stroke='#193f19' stroke-width='3' marker-end='url(#arrow)' stroke-dasharray='10,10'></line>";
+    // console.log("startX:" + startX);
+    // console.log("startY:" + startY);
+    // console.log("startW:" + startW);
+    // console.log("startH:" + startH);
+    // console.log("endX:" + endX);
+    // console.log("endY:" + endY);
+    // console.log("endW:" + endW);
+    // console.log("endH:" + endH);
+    // console.log("startLeft:" + startLeft);
+    // console.log("startTop:" + startTop);
+    // console.log("endLeft:" + endLeft);
+    // console.log("endTop:" + endTop);
     var svg = d3.select('#wrap')
     $(line).appendTo($("#wrap"));
 
@@ -63,51 +63,89 @@ function addLine(index, startId, endId) {
         x2: endLeft,
         y2: endTop
     });
+    $('#line' + index).css("z-index", 99);
     svg.html(svg.html()); //需要重写父元素，否则html添加了，但是页面不显示
     // console.log(svg.html());
 
 }
 
-
 function addEvent(txnObj) {
-    console.log($(!"#event" + txnObj.stepId).length > 0);
-    var informContent = "步骤" + txnObj.stepId + ": 由" + txnObj.startNode + "到达" + txnObj.nextNode + ", ";
-    if (txnObj.cardNumber != "" && txnObj.cardNumber != "undefined") {
-        informContent += "交易卡号: " + txnObj.cardNumber + ", ";
-    }
-    //INQ不需要传交易数额
-    if (txnObj.txnType != "" && txnObj.txnType != "undefined" && txnObj.txnType != "INQ") {
-        informContent += "交易数额: " + txnObj.txnAmount + ", ";
-    }
-    if (txnObj.cardBank != "" && txnObj.cardBank != "undefined") {
-        informContent += "交易卡所属银行: " + txnObj.cardBank + ", ";
-    }
-    if (txnObj.sourceATM != "" && txnObj.sourceATM != "undefined") {
-        informContent += "操作ATM: " + txnObj.sourceATM + ", ";
-    }
-    if (txnObj.minerATM != "" && txnObj.minerATM != "undefined") {
-        informContent += "代理ATM: " + txnObj.minerATM + ", ";
-    }
-    if (txnObj.fee != "" && txnObj.fee != "undefined") {
-        informContent += "手续费: " + txnObj.fee + ", ";
-    }
-    //只有INQ传交易数额
-    if (txnObj.balance != "" && txnObj.balance != "undefined" && txnObj.txnType == "INQ") {
-        informContent += "余额: " + txnObj.balance + ", ";
-    }
-    console.log(txnObj.status);
-    if (txnObj.status != "" && txnObj.status != "undefined") {
-        if (txnObj.status == 1) {
-            informContent += "<br>状态: 交易正在处理";
+    //console.log($(!"#event" + txnObj.stepId).length > 0);
+    //步骤0是初始化
+    if (txnObj.stepId == "0") {
+        if (txnObj.atm != "" && typeof (txnObj.atm) != "undefined") {
+            var informContent = "Customer chooses: " + txnObj.atm ;
         }
-        if (txnObj.status == 2) {
-            informContent += "<br>状态: 交易成功！";
-        }
-        if (txnObj.status == 3) {
-            informContent += "<br>状态: 交易失败！";
-        }
-    }
+    } else {
 
+        var informContent = "Step" + txnObj.stepId + ": <br>From " + txnObj.startNode + " to " + txnObj.nextNode + ";";
+        if (txnObj.txnType != "" && typeof (txnObj.txnType) != "undefined") {
+            informContent += "Transaction type:";
+            if (txnObj.txnType == "INQ")
+                informContent += "<b>Balance Inquiry</b>; ";
+            if (txnObj.txnType == "CWD")
+                informContent += "<b>Cash Withdrawal<b>; ";
+            if (txnObj.txnType == "DEP")
+                informContent += "Cash Deposit; ";
+            if (txnObj.txnType == "TFR")
+                informContent += "Transfer; ";
+        }
+        if (txnObj.cardNumber != "" && typeof (txnObj.cardNumber) != "undefined") {
+            informContent += "Card Number: " + txnObj.cardNumber + "; ";
+        }
+        //INQ不需要传交易数额
+        if (txnObj.txnType != "" && typeof (txnObj.txnType) != "undefined") {
+            informContent += "Amount: " + txnObj.txnAmount + "; ";
+        }
+        if (txnObj.cardBank != "" && typeof (txnObj.cardBank) != "undefined") {
+            informContent += "Card Issue Bank: " + txnObj.cardBank + "; ";
+        }
+        if (txnObj.sourceATM != "" && typeof (txnObj.sourceATM) != "undefined") {
+            informContent += "Perform ATM: " + txnObj.sourceATM + "; ";
+        }
+        if (txnObj.minerATM != "" && typeof (txnObj.minerATM) != "undefined") {
+            informContent += "Miner ATM: " + txnObj.minerATM + "; ";
+        }
+        if (txnObj.debitAccount != "" && typeof (txnObj.debitAccount) != "undefined") {
+            informContent += "Debit Account: " + txnObj.debitAccount + "; ";
+        }
+        if (txnObj.debitAmount != "" && typeof (txnObj.debitAmount) != "undefined") {
+            informContent += "Debit Amount: " + txnObj.debitAmount + "; ";
+        }
+        if (txnObj.debitBank != "" && typeof (txnObj.debitBank) != "undefined") {
+            informContent += "Debit Bank: " + txnObj.debitBank + "; ";
+        }
+        if (txnObj.creditAccount != "" && typeof (txnObj.creditAccount) != "undefined") {
+            informContent += "Credit Account: " + txnObj.creditAccount + "; ";
+        }
+        if (txnObj.creditBank != "" && typeof (txnObj.creditBank) != "undefined") {
+            informContent += "Credit Bank: " + txnObj.creditBank + "; ";
+        }
+        if (txnObj.debitATM != "" && typeof (txnObj.debitATM) != "undefined") {
+            informContent += "Debit ATM: " + txnObj.debitATM + "; ";
+        }
+        if (txnObj.creditATM != "" && typeof (txnObj.creditATM) != "undefined") {
+            informContent += "Credit ATM: " + txnObj.creditATM + "; ";
+        }
+
+        if (txnObj.fee != "" && typeof (txnObj.fee) != "undefined") {
+            informContent += "Transaction Fee: " + txnObj.fee + "; ";
+        }
+        if (txnObj.balance != "" && typeof (txnObj.balance) != "undefined") {
+            informContent += "Balance: " + txnObj.balance + "; ";
+        }
+        if (txnObj.status != "" && typeof (txnObj.status) != "undefined") {
+            if (txnObj.status == 1) {
+                informContent += "<br>Status: In Progress";
+            }
+            if (txnObj.status == 2) {
+                informContent += "<br>Status: Success";
+            }
+            if (txnObj.status == 3) {
+                informContent += "<br>Status: Fail";
+            }
+        }
+    }
     var left = "<li class='left_li' id='event" + txnObj.stepId + "'><span class='ic_events'><i class='png'></i></span><p class='txt_events'><strong></strong></p>";
     var right = "<li class='right_li' id='event" + txnObj.stepId + "'><span class='ic_events png'></span><p class='txt_events'><strong></strong></p>";
 
@@ -122,12 +160,36 @@ function addEvent(txnObj) {
     }
 }
 
+//为nextNode添加flash效果
+function addFlash(nextNode) {
+    var nodeArray = ["A001", "A002", "B001", "B002", "C001", "C002", "Blockchain", "aBank", "bBank", "cBank"];
+    //如果节点存在，则添加闪烁的效果，并且去除其它节点的闪烁效果
+    if ($.inArray(nextNode, nodeArray) != -1) {
+        //先去除其它节点的闪烁效果
+        for (var i = 0; i < nodeArray.length; i++) {
+            if ($("#" + nodeArray[i]).hasClass("flash")) {
+                $("#" + nodeArray[i]).removeClass("flash");
+            }
+        }
+        $("#" + nextNode).toggleClass("flash");
+    }
+}
+
+//var socket = io("ws://39.108.142.194:7004");
 var socket = io("ws://localhost:7004");
 socket.emit("userName", "supervisor");
 
-//当ATMC通知开始交易时，应刷新页面
+//回到首页时，应刷新页面
 socket.on("startTx", function () {
     location.reload();
+})
+//当客人选择某台ATM时，对应的提示
+socket.on("chooseATM", function (str) {
+    addFlash(str);
+    var init = {};
+    init.stepId = 0;
+    init.atm = str;
+    addEvent(init);//初始节点
 })
 
 //startNode和endNode只能为[A001,A002,B001,B002,C001,C003,Blockchain,aBank,bBank,cBank]
@@ -153,12 +215,10 @@ socket.on("informSupervisor", function (txnObj) {
     console.log("交易类型：" + txnObj.txnType)
     console.log(txnObj.startNode);
     console.log(txnObj.nextNode);
-    console.log(txnObj.status);
-    if ((txnObj.txnType == "CWD" || txnObj.txnType == "INQ" || txnObj.txnType == "DEP")) {
-        if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
-            addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
-            addEvent(txnObj);
-        }
+    if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
+        addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
+        addEvent(txnObj);
+        addFlash(txnObj.nextNode);
     }
 })
 
@@ -184,11 +244,12 @@ socket.on("informSupervisor", function (txnObj) {
 socket.on("informSupervisorTFR", function (txnObj) {
     console.log("交易类型：" + txnObj.txnType)
     if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
-
+        if ((txnObj.txnType == "TFR")) {
+            if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
+                addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
+                addEvent(txnObj);
+                addFlash(txnObj.nextNode);
+            }
+        }
     }
-})
-
-$("#test").on("click", function () {
-    addLine(0, "#A001", "#Blockchain");
-    addEvent(0, "A001", "Blockchain");
 })

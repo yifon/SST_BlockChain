@@ -125,7 +125,7 @@
                 });
                 var r = a / 2 + i * Math.cos(c) - t(this).width() / 2 + l //l-->offset().left
                   , n = h / 2 + i * Math.sin(c) - t(this).height() / 2 + d;//i+d-->160+offset().top
-                window.console && console.log(t(this).text(), r, n),
+                // window.console && console.log(t(this).text(), r, n),
                 t(this).css({
                     left: r + "px",
                     top: n + "px"

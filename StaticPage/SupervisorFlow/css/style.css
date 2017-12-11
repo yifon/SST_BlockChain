@@ -163,20 +163,22 @@ img {
 }
 
 .events_list .txt_events {
-    font-size: 5px;
+    /* font-size: 5px; */
     line-height: 22px;
-    color: #170c0c;
+    color: #000;
     position: absolute;
     /* white-space:nowrap; */
     top: -12px;
-    text-shadow: 0 0 8px #5bb75b;
+    /* text-shadow: 0 0 8px #5bb75b; */
 }
 
 .events_list .txt_events strong {
     display: block;
-    font-size: 12px;
-    line-height: 34px;
-    font-weight: 400;
+    font-size: 20px;
+
+    /* line-height: 34px; */
+    text-align: left;
+    font-weight: bold;
 }
 
 .events_list .right_li {

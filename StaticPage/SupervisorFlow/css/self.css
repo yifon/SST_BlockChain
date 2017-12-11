@@ -34,7 +34,7 @@
     width: 100px;
     height: 100px;
     border-radius: 10px;
-    transform: rotate(150deg);
+    transform: rotate(330deg);
     -webkit-box-shadow:-10px 0 8px #929c92;;
     -moz-box-shadow:-10px 0 8px #929c92;;
          box-shadow:-10px 0 8px #929c92;;
@@ -51,7 +51,21 @@
     -moz-box-shadow:-10px 0 8px #929c92;;
          box-shadow:-10px 0 8px #929c92;;
 }
-#A001:hover{
+#A001:hover,#A002:hover{
+    background: url('../images/aBank.jpg')!important;
+    width:100px!important;
+    height:100px!important;
+    font-weight: bold;
+    color: black!important;
+}
+#B001:hover,#B002:hover{
+    background: url('../images/bBank.jpg')!important;
+    width:100px!important;
+    height:100px!important;
+    font-weight: bold;
+    color: black!important;
+}
+#C001:hover,#C002:hover{
     background: url('../images/cBank.jpg')!important;
     width:100px!important;
     height:100px!important;
@@ -75,3 +89,22 @@ svg {
 .rightContent{
     margin-right: 30px;
 }
+.flash{
+    animation:flash 1s ease infinite;
+    -webkit-animation:flash 1s ease infinite;
+}
+
+@keyframes flash{
+        0% {
+            border-color:rgb(181, 238, 203);
+            background-color: #7f8820;
+        }
+        50%{
+            border-color:rgb(181, 238, 228);
+            background-color: #ff7c3b;
+        }
+        100%{
+            border-color:#FFEB3B;
+            background-color:#953c1f;
+        }
+ }

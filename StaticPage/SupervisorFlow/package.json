@@ -1,0 +1,8 @@
+{
+    "name": "SupervisorFlow",
+    "version": "0.0.1",
+    "description": "Supervisor flow websocket",
+    "dependencies": {
+        "socket.io": "^2.0.4"
+    }
+}

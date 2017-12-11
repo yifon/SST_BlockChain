@@ -542,75 +542,75 @@ $("#TFR_O_3").on("click", function () {
     txnObjTFR.status = 1;//交易进行中
     socket.emit('informSupervisor', txnObjTFR);
 })
-$("#TFR_O_2").on("click", function () {
+$("#TFR_O_4").on("click", function () {
     txnObjTFR={};
     txnObjTFR.txnType = "TFR";
-    txnObjTFR.stepId = 2;
+    txnObjTFR.stepId = 4;
     txnObjTFR.startNode = "bBank";
     txnObjTFR.nextNode = "B002";
     txnObjTFR.debitAmount="1000";//转出数额
     txnObjTFR.debitAccount="6222222,111111,222222";
-    txnObjTFR.debitBank="A";
+    txnObjTFR.debitBank="B";
+    txnObjTFR.creditAccount = "6222222,111111,333222";
+    txnObjTFR.creditBank="A";
+    txnObjTFR.sourceATM = "B001";
+    txnObjTFR.debitATM = "B002";//代理扣款ATM
+    txnObjTFR.creditATM="";//未知，可不传或传空
+    txnObjTFR.fee="B bank扣取客人1元手续费";//假设B bank扣取客人1元手续费
+    txnObjTFR.status = 1;//交易进行中
+    socket.emit('informSupervisor', txnObjTFR);
+})
+$("#TFR_O_5").on("click", function () {
+    txnObjTFR={};
+    txnObjTFR.txnType = "TFR";
+    txnObjTFR.stepId = 5;
+    txnObjTFR.startNode = "B002";
+    txnObjTFR.nextNode = "Blockchain";
+    txnObjTFR.debitAmount="1000";//转出数额
+    txnObjTFR.debitAccount="6222222,111111,222222";
+    txnObjTFR.debitBank="B";
+    txnObjTFR.creditAccount = "6222222,111111,333222";
+    txnObjTFR.creditBank="A";
+    txnObjTFR.sourceATM = "B001";
+    txnObjTFR.debitATM = "B002";//代理扣款ATM
+    txnObjTFR.creditATM="";//代理收款ATM,未知，可不传或传空
+    txnObjTFR.fee="B bank扣取客人1元手续费";//假设B bank扣取客人1元手续费
+    txnObjTFR.status = 1;//交易进行中
+    socket.emit('informSupervisor', txnObjTFR);
+})
+$("#TFR_O_6").on("click", function () {
+    txnObjTFR={};
+    txnObjTFR.txnType = "TFR";
+    txnObjTFR.stepId = 6;
+    txnObjTFR.startNode = "Blockchain";
+    txnObjTFR.nextNode = "A002";
+    txnObjTFR.debitAmount="1000";//转出数额
+    txnObjTFR.debitAccount="6222222,111111,222222";
+    txnObjTFR.debitBank="B";
     txnObjTFR.creditAccount = "6222222,111111,333222";
     txnObjTFR.creditBank="A";
     txnObjTFR.sourceATM = "B001";
     txnObjTFR.debitATM = "B002";//代理扣款ATM,可不传或者传sourceATM
-    txnObjTFR.creditATM="";//未知，可不传或传空
-    txnObjTFR.fee="1";//假设B bank扣取客人1元手续费
-    txnObjTFR.status = 2;//交易进行中
-    socket.emit('informSupervisor', txnObjTFR);
-})
-$("#TFR_O_1").on("click", function () {
-    txnObjTFR={};
-    txnObjTFR.txnType = "TFR";
-    txnObjTFR.stepId = 1;
-    txnObjTFR.startNode = "A001";
-    txnObjTFR.nextNode = "aBank";
-    txnObjTFR.debitAmount="1000";//转出数额
-    txnObjTFR.debitAccount="6222222,111111,222222";
-    txnObjTFR.debitBank="A";
-    txnObjTFR.creditAccount = "6222222,111111,333222";
-    txnObjTFR.creditBank="A";
-    txnObjTFR.sourceATM = "A001";
-    txnObjTFR.debitATM = "A001";//代理扣款ATM,可不传或者传sourceATM
-    txnObjTFR.creditATM="A001";//代理收款ATM
-    txnObjTFR.fee="";//本行卡不需要手续费，可不传或传空
+    txnObjTFR.creditATM="A002";//代理收款ATM,假设找了A002
+    txnObjTFR.fee="B bank扣取客人手续费1元，B001收取手续费1元";//此时Blockchain已经对B001进行加账
     txnObjTFR.status = 1;//交易进行中
     socket.emit('informSupervisor', txnObjTFR);
 })
-$("#TFR_O_2").on("click", function () {
+$("#TFR_O_7").on("click", function () {
     txnObjTFR={};
     txnObjTFR.txnType = "TFR";
-    txnObjTFR.stepId = 2;
-    txnObjTFR.startNode = "aBank";
-    txnObjTFR.nextNode = "A001";
-    txnObjTFR.debitAmount="1000";//转出数额
-    txnObjTFR.debitAccount="6222222,111111,222222";
-    txnObjTFR.debitBank="A";
-    txnObjTFR.creditAccount = "6222222,111111,333222";
-    txnObjTFR.creditBank="A";
-    txnObjTFR.sourceATM = "A001";
-    txnObjTFR.debitATM = "A001";//代理扣款ATM,可不传或者传sourceATM
-    txnObjTFR.creditATM="A001";//代理收款ATM
-    txnObjTFR.fee="";//本行卡不需要手续费，可不传或传空
-    txnObjTFR.status = 2;//交易进行中
-    socket.emit('informSupervisor', txnObjTFR);
-})
-$("#TFR_O_1").on("click", function () {
-    txnObjTFR={};
-    txnObjTFR.txnType = "TFR";
-    txnObjTFR.stepId = 1;
-    txnObjTFR.startNode = "A001";
+    txnObjTFR.stepId = 7;
+    txnObjTFR.startNode = "A002";
     txnObjTFR.nextNode = "aBank";
     txnObjTFR.debitAmount="1000";//转出数额
     txnObjTFR.debitAccount="6222222,111111,222222";
-    txnObjTFR.debitBank="A";
+    txnObjTFR.debitBank="B";
     txnObjTFR.creditAccount = "6222222,111111,333222";
     txnObjTFR.creditBank="A";
-    txnObjTFR.sourceATM = "A001";
-    txnObjTFR.debitATM = "A001";//代理扣款ATM,可不传或者传sourceATM
-    txnObjTFR.creditATM="A001";//代理收款ATM
-    txnObjTFR.fee="";//本行卡不需要手续费，可不传或传空
+    txnObjTFR.sourceATM = "B001";
+    txnObjTFR.debitATM = "B002";//代理扣款ATM,可不传或者传sourceATM
+    txnObjTFR.creditATM="A002";//代理收款ATM,假设找了A002
+    txnObjTFR.fee="B bank扣取客人手续费1元，B001收取手续费1元";//此时Blockchain已经对B001进行加账
     txnObjTFR.status = 1;//交易进行中
     socket.emit('informSupervisor', txnObjTFR);
 })

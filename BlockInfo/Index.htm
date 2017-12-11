@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" http-equiv="Access-Control-Allow-Origin" content="*">
+<script src="angular.min.js"></script>
+</head>
+<body>
+
+
+<div ng-app="myApp1" ng-controller="balanceCtrl"> 
+
+
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<style type="text/css">
+
+
+table.hovertable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.hovertable th {
+	background-color:#c3dde0;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+table.hovertable tr {
+	background-color:#d4e3e5;
+}
+table.hovertable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+</style>
+<p>Network Status<button ng-click="refreshNet()">Refresh</button></p>
+<!-- Table goes in the document BODY -->
+<table class="hovertable">
+<tr>
+	<th>ATM</th><th>IP address</th><th>Connected</th>
+</tr>
+  <tr ng-repeat="x in atms" onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+    <td>{{ x.name }}</td>
+    <td>{{ x.ipport }}</td>
+    <td ng-style = "x.isConnected ? {'color':'#333333'}: {'color':'red'}">{{ x.isConnected }}</td>
+  </tr>
+
+</table><br>
+<p>Blockchain Accounts and Balances<button ng-click="refreshBalance()">Refresh</button></p>
+<table class="hovertable">
+<tr>
+	<th>Account</th><th>Address</th><th>Balance</th><th>Action</th>
+</tr>
+  <tr ng-repeat="x in accounts" onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+    <td>{{ x.name }}</td>
+    <td>{{ x.address }}</td>
+    <td>{{ x.balance }}</td>
+    <td><button ng-click="clearing(x)">Clearing</button></td>
+  </tr>
+
+</table>
+
+
+
+
+
+<br>
+<p>Blockchain Transaction Records</p>
+<p>Please input the starting block number to check transaction records: 
+	<input type="text" ng-model="startBlock" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required><!--only allow number-->
+	<button ng-click="getBlocks()">OK</button></p>
+<p ng-hide="wait" style="color: red">It takes time to load blockchain records, please wait...</p>
+<table class="hovertable">
+<tr>
+	<th>Block No.</th>
+	<th>Timestamp</th>
+	<th>Transaction ATM address</th>
+	<th>Debit bank</th>
+	<th>Credit bank</th>
+	<th>Status</th>
+	<th>Amount</th>
+	<th>Fee</th>
+	<th>Transaction hash</th>
+
+</tr>
+  <tr ng-repeat="x in txRecord" onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+    <td>{{ x.blockNo }}</td>
+    <td>{{ x.time }}</td>
+    <td>{{ x._fromAtm }}</td>
+    <td>{{ x._debitBank }}</td>
+    <td>{{ x._creditBank }}</td>
+    <td>{{ x._status }}</td>
+    <td>{{ x._amount }}</td>
+    <td>{{ x._fee }}</td>
+    <td>{{ x._trxHash }}</td>
+  </tr>
+  </tr>
+
+</table>
+
+
+
+</div>
+
+<script>
+
+var app = angular.module('myApp1', []);
+app.controller('balanceCtrl', function($scope, $http, $location) {
+	var banks;
+
+	$scope.clearing = function(account){
+		var change = prompt("Please input the amount you want to clear for "+account.name +" ("+account.address+"):");
+		
+		var oldBalance = parseInt(account.balance);
+		var changeB = parseInt(change);
+		var btmB = parseInt($scope.accounts[0].balance);
+		//alert(btmB);
+		account.balance = oldBalance + changeB;//change the current account
+		$scope.accounts[0].balance = btmB - changeB; // change the BTM account
+		//alert($scope.accounts[0].balance);
+		 		$http.get("http://119.23.12.79:6101/updateBalance",
+		 			{
+	       	 			    headers: {'account': account.address, "balance": change}
+	       	 			}
+
+		 		)
+		 		.then(function (result) {		 		
+		 		   console.log("just log clearing done");
+		 		});
+
+	};
+	$scope.refreshNet = function(){
+		var connections=[];
+		console.log("refreshNet:"+banks.length);
+	   for (var i = 0; i < banks.length; i++) {
+       	//var aRecord = {name: banks[i].name, address: banks[i].address, balance: banks[i].balance};
+       	//balances.push(aRecord);
+       	for (var j = 0; j < banks[i].atms.length; j++) {
+       	 	//var atmRecord = {name: banks[i].name +"-" +banks[i].atms[j].name, address: banks[i].atms[j].address, balance: banks[i].atms[j].balance};
+       	 	var atmConnection = {name: banks[i].name +"-" +banks[i].atms[j].name, ipport: banks[i].atms[j].ip+":"+banks[i].atms[j].port, isConnected: banks[i].atms[j].isConnected};
+       	 	//balances.push(atmRecord);
+       	 	connections.push(atmConnection);
+       	 	//set interval
+       	 	console.log("now set interval:"+banks[i].atms[j].name+":"+banks[i].atms[j].port+(connections.length-1));
+       	 	//setInterval(updateNetwork,5000, banks[i].atms[j].ip, banks[i].atms[j].port, connections.length-1);
+       	 	updateNetwork(banks[i].atms[j].ip, banks[i].atms[j].port, connections.length-1);
+       	 } 
+       }
+        //$scope.accounts = balances;
+        $scope.atms = connections;
+	}
+
+		$scope.refreshBalance = function(){
+			$http.get("http://119.23.12.79:6101/balances")
+			    .then(function (result) {
+			    	console.log("refresh balance");
+			       banks = result.data.accounts;
+			       var balances=[]
+			       //var connections=[];
+			       for (var i = 0; i < banks.length; i++) {
+			       	var aRecord = {name: banks[i].name, address: banks[i].address, balance: banks[i].balance};
+			       	balances.push(aRecord);
+			       	for (var j = 0; j < banks[i].atms.length; j++) {
+			       	 	var atmRecord = {name: banks[i].name +"-" +banks[i].atms[j].name, address: banks[i].atms[j].address, balance: banks[i].atms[j].balance};
+			       	 	var atmConnection = {name: banks[i].name +"-" +banks[i].atms[j].name, ipport: banks[i].atms[j].ip+":"+banks[i].atms[j].port, isConnected: banks[i].atms[j].isConnected};
+			       	 	balances.push(atmRecord);
+			       	 	//connections.push(atmConnection);
+			       	 	//set interval
+			       	 	//console.log("now set interval:"+banks[i].atms[j].name+":"+banks[i].atms[j].port+(connections.length-1));
+			       	 	//setInterval(updateNetwork,5000, banks[i].atms[j].ip, banks[i].atms[j].port, connections.length-1);
+			       	 	//updateNetwork(banks[i].atms[j].ip, banks[i].atms[j].port, connections.length-1);
+			       	 } 
+			       }
+			        $scope.accounts = balances;
+			        //$scope.atms = connections;
+			    });
+		}
+
+	var updateNetwork = function(ip, port, atmIndex){
+		console.log("now updateNetwork:"+ip+":"+port+atmIndex);
+	       	 		$http.get("http://"+ip+":6102/network",
+	       				{
+	       	 			    headers: {'port': port, "Access-Control-Allow-Origin": "*"}
+	       	 			}
+	       	 		)
+	       	 		.then(function (result) {
+	       	 		
+	       	 		   $scope.atms[atmIndex].isConnected = result.data.isConnected;
+	       	 		});
+	};
+
+	$scope.startBlock = 650;//set default
+    	 $scope.wait = true;
+
+
+
+    $http.get("http://119.23.12.79:6101/balances")
+    .then(function (result) {
+       banks = result.data.accounts;
+       var balances=[]
+       var connections=[];
+       for (var i = 0; i < banks.length; i++) {
+       	var aRecord = {name: banks[i].name, address: banks[i].address, balance: banks[i].balance};
+       	balances.push(aRecord);
+       	for (var j = 0; j < banks[i].atms.length; j++) {
+       	 	var atmRecord = {name: banks[i].name +"-" +banks[i].atms[j].name, address: banks[i].atms[j].address, balance: banks[i].atms[j].balance};
+       	 	var atmConnection = {name: banks[i].name +"-" +banks[i].atms[j].name, ipport: banks[i].atms[j].ip+":"+banks[i].atms[j].port, isConnected: banks[i].atms[j].isConnected};
+       	 	balances.push(atmRecord);
+       	 	connections.push(atmConnection);
+       	 	//set interval
+       	 	console.log("now set interval:"+banks[i].atms[j].name+":"+banks[i].atms[j].port+(connections.length-1));
+       	 	//setInterval(updateNetwork,5000, banks[i].atms[j].ip, banks[i].atms[j].port, connections.length-1);
+       	 	updateNetwork(banks[i].atms[j].ip, banks[i].atms[j].port, connections.length-1);
+       	 } 
+       }
+        $scope.accounts = balances;
+        $scope.atms = connections;
+    });
+
+    $scope.getBlocks = function(){
+    	$scope.wait = false;
+    	
+    	 $http.get("http://120.79.43.12:6101/blocktx?startBlock="+$scope.startBlock)
+    	.then(function (result) {
+    		var records = [];
+    		var jsonRes = result.data;
+    		//alert(jsonRes.length);
+    		for (var i = 0; i < jsonRes.length; i++) {
+    				var num = jsonRes[i].timeStamp;
+    				var str = num.toString();
+    				
+    			    var ttt = new Date(parseInt(str.slice(0, str.length - 6))).toUTCString();
+
+    			var aRec = {
+    				blockNo : jsonRes[i].blockNumber,
+    				time : ttt,
+    				_fromAtm : jsonRes[i].log.events[0].value,
+    				_debitBank : jsonRes[i].log.events[1].value,
+    				_creditBank: jsonRes[i].log.events[2].value,
+    				_trxHash  : jsonRes[i].log.events[3].value,
+    				_amount   : jsonRes[i].log.events[4].value,
+    				_fee    : jsonRes[i].log.events[5].value,
+    				_status : jsonRes[i].log.events[6].value
+
+    			};
+    			records.push(aRec);
+    		}
+    	
+    	    $scope.txRecord = records;
+    	    $scope.wait = true;
+    	   
+
+    	});
+    };
+
+    
+
+     
+});
+
+
+
+</script>
+
+</body>
+</html>

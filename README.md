@@ -17,8 +17,10 @@ Please call http://120.79.43.12:6101/blocktx?startBlock=500 to get the blockchai
 
 <br><br>
 
+Please call http://xxx:6102/network to get each ATM node's network status, you need to pass a header parameter {'port': xxxx} in the http GET request.
 
-http://119.23.12.79:6101/Index.htm is a page to display the blockchain account balances and transaction records. It's actually a view of the data of http://119.23.12.79:6101/balances and http://120.79.43.12:6101/blocktx?startBlock=550
+
+http://119.23.12.79:6101/Index.htm is a page to display the blockchain network status, account balances and transaction records. It's actually a view of the data of http://xxx:6102/network, http://119.23.12.79:6101/balances and http://120.79.43.12:6101/blocktx?startBlock=550
 
 <br><br>
 

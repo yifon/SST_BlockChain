@@ -2,7 +2,7 @@
  
  access path :  http://39.108.142.194:3000/
  
- 
+ cd bank_atms_routes  node app.js  and   node wsServer.js
  
  Bank A atmc on 119.23.28.88    
  A001 :   path :  cd /ATMC/bank_a_ATM001/      node app.js     port 6100

@@ -11,8 +11,8 @@ contractNode.initContract = function(vars, checkDebitCallback, checkCreditCallba
   var web3 = new Web3(new Web3.providers.HttpProvider(vars.web3http));//pls note the port to be deployed, one port = one instance, different nodes may have different behaviors   
   web3.personal.unlockAccount(web3.eth.accounts[0],'',0);
 
-  var json = JSON.parse(fs.readFileSync(vars.contractfile+".json"));
-  var abi = json.abi;
+  
+  var abi = vars.contractABI;
   var contract = web3.eth.contract(abi).at(vars.contractAdd);
   //the CheckDebit event handling
   contract.CheckDebit().watch(function(err,res){

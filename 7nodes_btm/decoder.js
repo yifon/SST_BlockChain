@@ -60,17 +60,79 @@ ContractNode = {
   }//end of initContract
   
 }
-ContractNode.initContract("BTM", "http://localhost:7101");
+
+
+
+
+  var http = require('http');
+var initConig= function(initCallback){
+  http.get({
+    hostname: '119.23.12.79', port: 6101,
+    path: '/balances'
+    }, (res)=>{
+      var result ='';
+      res.on('data',function(chunk){
+        result += chunk;
+      });
+      res.on('end', function(){
+        //completed request
+        var jsonRes = JSON.parse(result);
+
+        initCallback(jsonRes);
+
+      });
+    }
+    
+
+   );
+}
+
+
+var initCallback= function(jsonRes){
+
+  var Web3 = require('web3');
+  var fs=require('fs');
+  const abiDec=require('abi-decoder');  
+  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7101"));
+  
+  abiDec.addABI(jsonRes.contractABI);
+  console.log("block no:"+web3.eth.blockNumber);
+  for(var i=580;i<=web3.eth.blockNumber;i++){
+    var block = web3.eth.getBlock(i);  
+    console.log(i);
+    var trxs = block.transactions;
+    for (var trxI = 0;    trxI < trxs.length; trxI++) {
+      console.log("tx:"+trxs[trxI]);
+
+      console.log("################")
+      var receipt = web3.eth.getTransactionReceipt(trxs[trxI]);//, function(e, receipt){
+        /*
+        console.log("receipt");
+        console.log(receipt);
+        console.log("receipt.logs");
+        console.log(receipt.logs);
+        */
+        var logs = abiDec.decodeLogs(receipt.logs);
+        console.log("logs 0:"+logs.length);
+        
+        console.log(logs[0]);
+        
+      //});
+    
+    }
+  }
+  
+
+  
+  
+
+}
 
 
 
 
 
-
-
-
-
-
+initConig(initCallback);
 
 
 

@@ -44,8 +44,10 @@ contract BTM is owned{
     // the fee is defined by the _fromAtm because it's the _fromAtm to receive the fee
     //_trxHash include like fromAccout / to account / pwd , such as {from：＂１２３“， to: "456", pwd: "12345"}
     function startTrx(address _fromAtm, address _debitBank, address _creditBank,string _trxHash, int256 _amount, int256 _fee) external{
-        var _debitBankAtm = getDestNode(_debitBank);//find an ATM node from the _debitBank
-        CheckDebit( _fromAtm,  _debitBankAtm,  _debitBank, _creditBank,  _trxHash,   _amount,  _fee);
+      
+            var _debitBankAtm = getDestNode(_debitBank);//find an ATM node from the _debitBank
+            CheckDebit( _fromAtm,  _debitBankAtm,  _debitBank, _creditBank,  _trxHash,   _amount,  _fee);
+        
     }
     //to be called by the credit bank ATM node to confirm that it's ok to be creditted for the transaction
     //pls note that this function require _debitBank address, but not _debitBankAtm

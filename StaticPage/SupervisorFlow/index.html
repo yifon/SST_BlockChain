@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Blockchain ATM - Supervisor flow</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/self.css">
+<!-- <link rel="stylesheet" href="css/default.css"> -->
+
+</head>
+<body>
+<!-- 箭头 -->
+<svg id="wrap">
+  <defs>
+      <marker id="arrow" markerUnits="strokeWidth" markerWidth="6" markerHeight="12" viewBox="0 0 12 12" refX="6" refY="6" orient="auto">
+          <path xmlns="http://www.w3.org/2000/svg" d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill:#5bb75b;" />
+      </marker>
+  </defs>
+</svg>
+
+  <div class="leftContent">
+    <div class="bankList">
+      <div id="aBank"><img src="images/aBank.jpg" alt=""></div>
+      <div id="bBank"><img src="images/bBank.jpg" alt=""></div>
+      <div id="cBank"><img src="images/cBank.jpg" alt=""></div>
+    </div>
+    <div class="contenedor">
+      <div class="ciclo1">
+        <a class="sc_object" id="A001">A001</a>
+        <a class="sc_object" id="A002">A002</a>
+        <a class="sc_object" id="B001">B001</a>
+        <a class="sc_object" id="B002">B002</a>
+        <a class="sc_object" id="C001">C001</a>
+        <a class="sc_object" id="C002">C002</a>
+        <a class="sc_center" id="Blockchain">Blockchain</a>
+      </div>
+    </div>
+    <!-- <button id="test">test</button> -->
+  </div>
+
+<div class="rightContent">
+  <div class="wrapper">
+    <div class="events_sec" id="events_sec">
+      <div class="content">
+        <div class="events_list">
+          <span class="ic_time png"></span>
+          <ul id="event_ul">
+            <!-- <li class="right_li">
+              <span class="ic_events png"></span>
+              <p class="txt_events"><strong>事件1</strong></p>
+            </li>
+            <li class="left_li">
+              <span class="ic_events"><i class="png"></i></span>
+              <p class="txt_events"><strong>事件2</strong></p>
+            </li> -->
+            <!-- <li class="right_li">
+              <span class="ic_events png"></span>
+              <p class="txt_events"><strong>事件3</strong></p>
+            </li>
+            <li class="left_li">
+              <span class="ic_events"><i class="png"></i></span>
+              <p class="txt_events"><strong>事件4</strong></p>
+            </li>
+            <li class="right_li">
+              <span class="ic_events png"></span>
+              <p class="txt_events"><strong>事件5</strong></p>
+            </li>
+            <li class="left_li">
+              <span class="ic_events"><i class="png"></i></span>
+              <p class="txt_events"><strong>事件6</strong></p>
+            </li> -->
+          </ul>
+          <span class="ic_arr png"></span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<script src="js/canvas-nest.min.js"></script>
+<script type="text/javascript" src="https://d3js.org/d3.v4.js"></script>
+<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/smartCycle.js"></script>
+<script src="js/socket.io-2.0.3.js"></script>
+<script>
+  var radio = 160;
+  var radio_arrows =140;
+  var container_width = 420, container_height=420;
+  var c_container_width = 420, c_container_height=420;
+  $(".ciclo1").smartCycle({
+    container_width: '420px',
+    container_height: '420px',
+    radio: radio,
+    radio_arrows: radio_arrows,
+    arrows_colors:['#40A4C0'],
+    colors:['#5bb75b','#5bb75b']
+  });
+  </script>
+  <script type="text/javascript" src="js/line.js"></script>
+</body>
+</html>

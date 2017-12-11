@@ -1,0 +1,77 @@
+.leftContent{
+    width: 800px;
+    min-width: 800px;
+    /* margin-top: 140px; */
+    margin-top: 140px;
+}
+.bankList{
+    position: absolute;
+    width: 1000px;
+    height: 800px;
+    top: 0;
+    left: 0;
+    z-index: -11;
+}
+.bankList img{
+    border-radius: 5px;
+}
+#aBank{
+    position: relative;
+    top: 30px;
+    left: 510px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(30deg);
+    border-radius: 10px;
+    -webkit-box-shadow:-10px 0 8px #929c92;;
+    -moz-box-shadow:-10px 0 8px #929c92;;
+         box-shadow:-10px 0 8px #929c92;;
+}
+#bBank{
+    position: relative;
+    top: 480px;
+    left: 530px;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    transform: rotate(150deg);
+    -webkit-box-shadow:-10px 0 8px #929c92;;
+    -moz-box-shadow:-10px 0 8px #929c92;;
+         box-shadow:-10px 0 8px #929c92;;
+}
+#cBank{
+    position: relative;
+    top: 70px;
+    left: 0px;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    /* transform: rotate(-90deg); */
+    -webkit-box-shadow:-10px 0 8px #929c92;;
+    -moz-box-shadow:-10px 0 8px #929c92;;
+         box-shadow:-10px 0 8px #929c92;;
+}
+#A001:hover{
+    background: url('../images/cBank.jpg')!important;
+    width:100px!important;
+    height:100px!important;
+    font-weight: bold;
+    color: black!important;
+}
+svg {
+    overflow: visible;
+    position: absolute;
+}
+#test{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+#wrap{
+    top: 0;
+    left: 0;
+    /* z-index: 11; */
+}
+.rightContent{
+    margin-right: 30px;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟ATMC端</title>
+    <style>
+        .txnBox {
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/socket.io-2.0.3.js"></script>
+</head>
+
+<body>
+    <button id="startTx">开始交易</button>
+
+    <!--处理本行和跨行查询余额-->
+    <div class="txnBox">
+        <p>INQ:本行卡在本行机 (A bank客人在A001上查询余额: A001->aBank->A001)</p>
+        <button id="INQ_I_1">A001向A bank发请求</button>
+        <button id="INQ_I_2">A bank响应A001请求</button>
+    </div>
+    <div class="txnBox">
+        <p>INQ:它行卡在本行机 (B bank客人在A001上查询余额：A001->Blockchain->B002->bBank->B002->Blockchain->A001)</p>
+        <button id="INQ_O_1">A001向Blockchain发起交易请求</button>
+        <button id="INQ_O_2">Blockchain找了代理ATM:B002</button>
+        <button id="INQ_O_3">B002向B bank发起交易请求</button>
+        <button id="INQ_O_4">B bank响应B002请求</button>
+        <button id="INQ_O_5">B002返回给Blockchain</button>
+        <button id="INQ_O_6">Blockchain返回给A001</button>
+    </div>
+    <!--处理本行和跨行取款-->
+    <div class="txnBox">
+        <p>CWD:本行卡在本行机 (C bank客人在C002上取款: C002->cBank->C002)</p>
+        <button id="CWD_I_1">C002向C bank发请求</button>
+        <button id="CWD_I_2">C bank响应C002请求</button>
+    </div>
+    <div class="txnBox">
+        <p>CWD:它行卡在本行机 (A bank客人在C002上取款：C002->Blockchain->A002->aBank->A002->Blockchain->C002)</p>
+        <button id="CWD_O_1">C002向Blockchain发起交易请求</button>
+        <button id="CWD_O_2">Blockchain找了代理ATM:A002</button>
+        <button id="CWD_O_3">A002向A bank发起交易请求</button>
+        <button id="CWD_O_4">A bank响应A002请求</button>
+        <button id="CWD_O_5">A002返回给Blockchain</button>
+        <button id="CWD_O_6">Blockchain返回给C002</button>
+    </div>
+    <!--处理本行和跨行存款-->
+    <div class="txnBox">
+        <p>DEP:本行卡在本行机 (C bank客人在C001上存款: C001->cBank->C001)</p>
+        <button id="DEP_I_1">C001向C bank发请求</button>
+        <button id="DEP_I_2">C bank响应C001请求</button>
+    </div>
+    <div class="txnBox">
+        <p>DEP:它行卡在本行机 (A bank客人在C001上存款：C001->Blockchain->A002->aBank->A002->Blockchain->C001)</p>
+        <button id="DEP_O_1">C001向Blockchain发起交易请求</button>
+        <button id="DEP_O_2">Blockchain找了代理ATM:A002</button>
+        <button id="DEP_O_3">A002向A bank发起交易请求</button>
+        <button id="DEP_O_4">A bank响应A002请求</button>
+        <button id="DEP_O_5">A002返回给Blockchain</button>
+        <button id="DEP_O_6">Blockchain返回给C001</button>
+    </div>
+
+    <!--转账分四种情况-->
+    <!--本行转本行-->
+    <div class="txnBox">
+        <p>TFR:本行卡在本行机转本行卡 (A bank客人在A001上转账给A bank其它客人: A001->aBank->A001)</p>
+        <button id="TFR_I_1">A001向A bank发请求</button>
+        <button id="TFR_I_2">A bank响应A001请求</button>
+    </div>
+    <div class="txnBox">
+        <p>TFR:本行卡在本行机转它行卡 (B bank客人在B001上转账给A bank客人：B001->Blockchain->B002->bBank->B002->Blockchain->A002->aBank->A002->Blockchain->B001)</p>
+        <button id="TFR_O_1">B001向Blockchain发起交易请求</button>
+        <button id="TFR_O_2">Blockchain找了代理扣款ATM:B002</button>
+        <button id="TFR_O_3">B002向B bank发起交易请求</button>
+        <button id="TFR_O_4">B bank响应B002请求</button>
+        <button id="TFR_O_5">B002返回给Blockchain</button>
+        <button id="TFR_O_6">Blockchain找了代理收款ATM:A002</button>
+        <button id="TFR_O_7">A002向A bank发起交易请求</button>
+        <button id="TFR_O_8">A bank响应A002请求</button>
+        <button id="TFR_O_9">A002返回给Blockchain</button>
+        <button id="TFR_O_10">Blockchain返回给B001</button>
+    </div>
+    <div class="txnBox">
+        <p>TFR:它行卡在本行机转本行卡 (A bank客人在B001上转账给B bank客人：B001->Blockchain->A002->aBank->A002->Blockchain->B002->bBank->B002->Blockchain->B001)</p>
+        <button id="TFR_T_1">B001向Blockchain发起交易请求</button>
+        <button id="TFR_T_2">Blockchain找了代理扣款ATM:A002</button>
+        <button id="TFR_T_3">A002向A bank发起交易请求</button>
+        <button id="TFR_T_4">A bank响应A002请求</button>
+        <button id="TFR_T_5">A002返回给Blockchain</button>
+        <button id="TFR_T_6">Blockchain找了代理收款ATM:B002</button>
+        <button id="TFR_T_7">B002向B bank发起交易请求</button>
+        <button id="TFR_T_8">B bank响应B002请求</button>
+        <button id="TFR_T_9">B002返回给Blockchain</button>
+        <button id="TFR_T_10">Blockchain返回给B001</button>
+    </div>
+    <div class="txnBox">
+        <p>TFR:它行卡在本行机转它行卡 (A bank客人在B001上转账给C bank客人：B001->Blockchain->A002->aBank->A002->Blockchain->C002->cBank->C002->Blockchain->B001)</p>
+        <button id="TFR_X_1">B001向Blockchain发起交易请求</button>
+        <button id="TFR_X_2">Blockchain找了代理扣款ATM:A002</button>
+        <button id="TFR_X_3">A002向A bank发起交易请求</button>
+        <button id="TFR_X_4">A bank响应A002请求</button>
+        <button id="TFR_X_5">A002返回给Blockchain</button>
+        <button id="TFR_X_6">Blockchain找了代理收款ATM:C002</button>
+        <button id="TFR_X_7">C002向C bank发起交易请求</button>
+        <button id="TFR_X_8">C bank响应C002请求</button>
+        <button id="TFR_X_9">C002返回给Blockchain</button>
+        <button id="TFR_X_10">Blockchain返回给B001</button>
+    </div>
+    <script src="atmc.js"></script>
+</body>
+
+</html>

@@ -36,14 +36,23 @@ video{
     height: 100%;
     border-radius: 15px;
 }
+.atm{
+    /* width: 14.89361702%; */
+    position: relative;
+    left: 20%;
+}
 .btn{
-    min-height: 50px;
-    line-height: 50px;
-    width: 90%;
-    border-radius: 20px;
+    /* min-height: 50px; */
+    /* line-height: 50px; */
+    /* width:50%; */
+    /* margin: 20px auto; */
+    border-radius: 10px;
     opacity: 0.8;
-    font-size: 30px;
+    font-size: 20px;
     margin-top: 20px;
+}
+.btn :hover{
+    cursor: pointer;
 }
 .txn{
     height: 200px;
@@ -109,7 +118,6 @@ video{
 }
 .fail{
     text-align: center;
-    font-size: 30px;
     color: white;
     height: 300px;
     line-height: 300px;
@@ -121,3 +129,37 @@ video{
     height: 300px;
     line-height: 300px;
 }
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
+  .nav li {
+  padding-top: 5px;
+  }
+  
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+  .leaderboard {
+padding: 60px;
+margin-bottom: 90px;
+background-repeat:repeat;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+text-align: center;
+}
+.leaderboard h1 {
+font-size: 40px;
+line-height: 1;
+letter-spacing: -1px;
+color:#e5f1e5;
+z-index: 99;
+}
+.fail p{
+    font-size: 30px;
+    height:50px;
+    line-height: 50px;
+    margin: 30px auto;
+}
+

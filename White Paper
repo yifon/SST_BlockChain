@@ -1,0 +1,25 @@
+The existing cross bank ATM transactions rely on 3rd party card association such as VISA, Mastercard, UnionPay etc. to be the router and clearer. The cross border infrastructure is complex and expensive, which leads to an expensive transaction fee to customers, as well as high cost for financial institutions (FIs). 
+
+Nowadays ATM and similar self service kiosks have large physical coverage around the globe, they are naturally suitable to be nodes of a propietary blockchain network across FIs because they are:
+
+ - Secure. They physically store a large amount of real cash. And they are entry point of customer. Every FI will spare no effort to ensure their physical security, network secuity and data security etc.
+ 
+ 
+
+
+Digital trust without reliance on an external authority – this is the core beneift of blockchain, which is provable and intrinsic to the system. In our system, blockchain plays 2 roles:
+
+Cross bank transaction routing
+
+Clearing
+
+
+Security and privacy in blockchain – our system achieves them by:
+
+Network permissionning - only permissioned nodes can be added to the proprietary blockchain network.
+
+Separate customer information with inter bank clearing information: 
+
+Customer information is encrypted by bank public key, it can only be decrypted by bank backend system with private key. Any nodes in the blockchain is unable to decrypt customer information.
+
+Inter bank transaction routing and clearing information is stored in blockchain to achieve digital trust.

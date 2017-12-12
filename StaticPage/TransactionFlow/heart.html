@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .heart-shape {
+            position: absolute;
+            z-index: 99;
+            top: 40px;
+            right: 250px;
+            width: 40px;
+            height: 40px;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            background-color: #bbccbb;
+            /* -moz-box-shadow:-5px -5px 5px #999 inset;
+    -webkit-box-shadow:-5px -5px 5px #999 inset;
+    box-shadow:-5px -5px 5px #999 inset; */
+            animation: heartFlash 1s ease infinite;
+            -webkit-animation: heartFlash 1s ease infinite;
+        }
+
+        .heart-shape:before,
+        .heart-shape:after {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            content: '';
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -o-border-radius: 50%;
+            border-radius: 50%;
+            background-color: #bbccbb;
+            animation: heartFlash 1s ease infinite;
+            -webkit-animation: heartFlash 1s ease infinite;
+        }
+
+        .heart-shape:before {
+            bottom: 0px;
+            left: -23px;
+        }
+
+        .heart-shape:after {
+            top: -23px;
+            right: 0px;
+        }
+
+        @keyframes heartFlash {
+            0% {
+                /* border-color:rgb(181, 238, 203); */
+                background-color: #bbccbb;
+            }
+            50% {
+                /* border-color:rgb(181, 238, 228); */
+                background-color: #85ac85;
+            }
+            100% {
+                /* border-color:#FFEB3B; */
+                background-color: #7ea77e;
+            }
+        }
+
+
+        .reminder {
+            position: absolute;
+            /* z-index: -1; */
+            right: 30px;
+            top: 50px;
+            width: 250px;
+            height: 100px;
+            border: 1px dashed #000;
+            box-shadow: 10px 10px 5px #888888;
+            -moz-box-shadow: 10px 10px 5px #888888;
+            -webkit-box-shadow: 10px 10px 5px #888888;
+        }
+
+        .reminder p {
+            /* line-height: 100px; */
+            text-align: left;
+            text-indent: 43px;
+            padding-left: 5px;
+        }
+
+        .saveFee {
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heart-shape"></div>
+    <div class="reminder">
+        <p>Trasaction via blockchain can save
+            <span class="saveFee">8$</span> fee per trasaction for you!</p>
+    </div>
+</body>
+
+</html>

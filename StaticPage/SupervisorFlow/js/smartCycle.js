@@ -29,7 +29,7 @@
         ,
         this.realign = function() {
             //0==""-->返回值为true,执行this._options.colors赋值
-            0 == this._options.colors.length && (this._options.colors = ["#5bb75b", "#C0504D", "#9BBB59", "#8064A2", "#4BACC6", "#D0BE40", "#848058", "#95A39D"]),
+            0 == this._options.colors.length && (this._options.colors = ["#073b07", "#C0504D", "#9BBB59", "#8064A2", "#4BACC6", "#D0BE40", "#848058", "#95A39D"]),
             //this._options.arrows_colors=["#C0504D", "#9BBB59", "#8064A2", "#4BACC6", "#D0BE40", "#848058", "#95A39D"]
             0 == this._options.arrows_colors.length && (this._options.arrows_colors = ["#C0504D", "#9BBB59", "#8064A2", "#4BACC6", "#D0BE40", "#848058", "#95A39D"]);
             var i = this._options.radio
@@ -121,7 +121,7 @@
                     "background-position": "center",
                     "background-repeat": "no-repeat",
                     "line-height": k._options.diameter_object + "px",
-                    "opacity":"0.8"
+                    // "opacity":"0.9"
                 });
                 var r = a / 2 + i * Math.cos(c) - t(this).width() / 2 + l //l-->offset().left
                   , n = h / 2 + i * Math.sin(c) - t(this).height() / 2 + d;//i+d-->160+offset().top

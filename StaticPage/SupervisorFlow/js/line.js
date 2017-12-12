@@ -17,7 +17,7 @@ function addLine(index, startId, endId) {
         startLeft = startX + startW / 2;
         startTop = startY + startH;
         endLeft = endX + endW / 2;
-        endTop = endY;
+        endTop = endY-5+"px";
     }
     //起点和终点在同一水平线上
     if (startY == endY) {
@@ -38,7 +38,7 @@ function addLine(index, startId, endId) {
         startLeft = startX + startH / 2;
         startTop = startY;
         endLeft = endX + endW / 2;
-        endTop = endY + endH;
+        endTop = endY + endH+5+"px";
     }
 
     var line = "<line" + " id=line" + index + " xmlns='http://www.w3.org/2000/svg' stroke='#193f19' stroke-width='3' marker-end='url(#arrow)' stroke-dasharray='10,10'></line>";
@@ -74,65 +74,65 @@ function addEvent(txnObj) {
     //步骤0是初始化
     if (txnObj.stepId == "0") {
         if (txnObj.atm != "" && typeof (txnObj.atm) != "undefined") {
-            var informContent = "Customer chooses: " + txnObj.atm ;
+            var informContent = "Customer chooses: " + txnObj.atm;
         }
     } else {
 
-        var informContent = "Step" + txnObj.stepId + ": <br>From " + txnObj.startNode + " to " + txnObj.nextNode + ";";
-        if (txnObj.txnType != "" && typeof (txnObj.txnType) != "undefined") {
+        var informContent = "Step" + txnObj.stepId + ": <br>From " + txnObj.startNode + " to " + txnObj.nextNode + ";<br>";
+        if (txnObj.txnType != "" && typeof (txnObj.txnType) != "undefined" && txnObj.stepId == "1") {
             informContent += "Transaction type:";
             if (txnObj.txnType == "INQ")
-                informContent += "<b>Balance Inquiry</b>; ";
+                informContent += "Balance Inquiry<br>";
             if (txnObj.txnType == "CWD")
-                informContent += "<b>Cash Withdrawal<b>; ";
+                informContent += "Cash Withdrawal<br>";
             if (txnObj.txnType == "DEP")
-                informContent += "Cash Deposit; ";
+                informContent += "Cash Deposit<br>";
             if (txnObj.txnType == "TFR")
-                informContent += "Transfer; ";
+                informContent += "Transfer<br>";
         }
         if (txnObj.cardNumber != "" && typeof (txnObj.cardNumber) != "undefined") {
-            informContent += "Card Number: " + txnObj.cardNumber + "; ";
+            // informContent += "Card Number: " + txnObj.cardNumber + "; ";
         }
         //INQ不需要传交易数额
         if (txnObj.txnType != "" && typeof (txnObj.txnType) != "undefined") {
-            informContent += "Amount: " + txnObj.txnAmount + "; ";
+            // informContent += "Amount: " + txnObj.txnAmount + "; ";
         }
         if (txnObj.cardBank != "" && typeof (txnObj.cardBank) != "undefined") {
-            informContent += "Card Issue Bank: " + txnObj.cardBank + "; ";
+            //informContent += "Card Issue Bank: " + txnObj.cardBank + "; ";
         }
         if (txnObj.sourceATM != "" && typeof (txnObj.sourceATM) != "undefined") {
-            informContent += "Perform ATM: " + txnObj.sourceATM + "; ";
+            // informContent += "Perform ATM: " + txnObj.sourceATM + "; ";
         }
         if (txnObj.minerATM != "" && typeof (txnObj.minerATM) != "undefined") {
-            informContent += "Miner ATM: " + txnObj.minerATM + "; ";
+            // informContent += "Miner ATM: " + txnObj.minerATM + "; ";
         }
         if (txnObj.debitAccount != "" && typeof (txnObj.debitAccount) != "undefined") {
-            informContent += "Debit Account: " + txnObj.debitAccount + "; ";
+            //informContent += "Debit Account: " + txnObj.debitAccount + "; ";
         }
         if (txnObj.debitAmount != "" && typeof (txnObj.debitAmount) != "undefined") {
-            informContent += "Debit Amount: " + txnObj.debitAmount + "; ";
+            //informContent += "Debit Amount: " + txnObj.debitAmount + "; ";
         }
         if (txnObj.debitBank != "" && typeof (txnObj.debitBank) != "undefined") {
-            informContent += "Debit Bank: " + txnObj.debitBank + "; ";
+            //informContent += "Debit Bank: " + txnObj.debitBank + "; ";
         }
         if (txnObj.creditAccount != "" && typeof (txnObj.creditAccount) != "undefined") {
-            informContent += "Credit Account: " + txnObj.creditAccount + "; ";
+            //informContent += "Credit Account: " + txnObj.creditAccount + "; ";
         }
         if (txnObj.creditBank != "" && typeof (txnObj.creditBank) != "undefined") {
-            informContent += "Credit Bank: " + txnObj.creditBank + "; ";
+            //informContent += "Credit Bank: " + txnObj.creditBank + "; ";
         }
         if (txnObj.debitATM != "" && typeof (txnObj.debitATM) != "undefined") {
-            informContent += "Debit ATM: " + txnObj.debitATM + "; ";
+            //informContent += "Debit ATM: " + txnObj.debitATM + "; ";
         }
         if (txnObj.creditATM != "" && typeof (txnObj.creditATM) != "undefined") {
-            informContent += "Credit ATM: " + txnObj.creditATM + "; ";
+            //informContent += "Credit ATM: " + txnObj.creditATM + "; ";
         }
 
         if (txnObj.fee != "" && typeof (txnObj.fee) != "undefined") {
-            informContent += "Transaction Fee: " + txnObj.fee + "; ";
+            // informContent += "Transaction Fee: " + txnObj.fee + "; ";
         }
         if (txnObj.balance != "" && typeof (txnObj.balance) != "undefined") {
-            informContent += "Balance: " + txnObj.balance + "; ";
+            //informContent += "Balance: " + txnObj.balance + "; ";
         }
         if (txnObj.status != "" && typeof (txnObj.status) != "undefined") {
             if (txnObj.status == 1) {
@@ -175,8 +175,8 @@ function addFlash(nextNode) {
     }
 }
 
-//var socket = io("ws://39.108.142.194:7004");
-var socket = io("ws://localhost:7004");
+var socket = io("ws://39.108.142.194:7004");
+// var socket = io("ws://localhost:7004");
 socket.emit("userName", "supervisor");
 
 //回到首页时，应刷新页面

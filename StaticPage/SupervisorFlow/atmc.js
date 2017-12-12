@@ -233,7 +233,7 @@ $("#CWD_O_1").on("click", function () {
 })
 $("#CWD_O_2").on("click", function () {
     txnObj={};
-    //txnObj.txnType = "CWD";
+    txnObj.txnType = "CWD";
     txnObj.stepId = 2;
     txnObj.startNode = "Blockchain";
     txnObj.nextNode = "A002";
@@ -249,7 +249,7 @@ $("#CWD_O_2").on("click", function () {
 })
 $("#CWD_O_3").on("click", function () {
     txnObj={};
-    //txnObj.txnType = "CWD";
+    txnObj.txnType = "CWD";
     txnObj.stepId = 3;
     txnObj.startNode = "A002";
     txnObj.nextNode = "aBank";
@@ -265,7 +265,7 @@ $("#CWD_O_3").on("click", function () {
 })
 $("#CWD_O_4").on("click", function () {
     txnObj={};
-    //txnObj.txnType = "CWD";
+    txnObj.txnType = "CWD";
     txnObj.stepId = 4;
     txnObj.startNode = "aBank";
     txnObj.nextNode = "A002";
@@ -281,7 +281,7 @@ $("#CWD_O_4").on("click", function () {
 })
 $("#CWD_O_5").on("click", function () {
     txnObj={};
-    //txnObj.txnType = "CWD";
+    txnObj.txnType = "CWD";
     txnObj.stepId = 5;
     txnObj.startNode = "A002";
     txnObj.nextNode = "Blockchain";
@@ -297,7 +297,7 @@ $("#CWD_O_5").on("click", function () {
 })
 $("#CWD_O_6").on("click", function () {
     txnObj={};
-    //txnObj.txnType = "CWD";
+    txnObj.txnType = "CWD";
     txnObj.stepId = 6;
     txnObj.startNode = "Blockchain";
     txnObj.nextNode = "C002";

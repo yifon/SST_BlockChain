@@ -23,7 +23,6 @@ io.on("connection", function (socket) {
 
     //CWD,INQ,DEP接口一样，监听informSupervisor
     socket.on("informSupervisor", function (txnObj) {
-        if (txnObj.txnType == "CWD" || txnObj.txnType == "INQ" || txnObj.txnType == "DEP") {
             console.log("收到ATMC发来的信息如下：");
             console.log("txnType: " + txnObj.txnType);
             console.log("stepId: " + txnObj.stepId);
@@ -38,11 +37,9 @@ io.on("connection", function (socket) {
             console.log("balance: " + txnObj.balance);
             console.log("status: " + txnObj.status);
             io.emit("informSupervisor", txnObj);
-        }
     })
     //TFR监听informSupervisorTFR
     socket.on("informSupervisorTFR", function (txnObjTFR) {
-        if (txnObjTFR.txnType == "TFR") {
             console.log("收到ATMC发来的信息如下：");
             console.log("txnType: " + txnObjTFR.txnType);
             console.log("stepId: " + txnObjTFR.stepId);
@@ -59,7 +56,6 @@ io.on("connection", function (socket) {
             console.log("fee: " + txnObjTFR.fee);
             console.log("status: " + txnObjTFR.status);
             io.emit("informSupervisorTFR", txnObjTFR);
-        }
 
     })
     socket.on("disconnnect", function () {

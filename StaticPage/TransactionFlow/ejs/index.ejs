@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlockChain ATM</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <!-- logo摆放处 -->
+    <header role="banner">
+        <div class="header-wrap">
+            <img class="site-logo" src="images/logo.png" alt="Blockchain ATM">
+        </div>
+    </header>
+   
+    <section class="athp-section athp-lead-section">
+        <video class="vdo_inner" poster="videos/poster.png" id="bgvid" autoplay="" loop="">
+            <source src="videos/herobanner.webm" type="video/webm">
+            <source src="videos/herobanner.ogv" type="video/ogg">
+            <source src="videos/herobanner.mp4" type="video/mp4">
+        </video>
+    </section>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="leaderboard">
+                    <h1>Please choose the transaction ATM :</h1>
+                </div>
+                <!--用id绑定为atm id,每个atm id在后台已定义了所属bank-->
+                <div class="row-fluid spanBox">
+                    <div class="span2">
+                        <p>
+                            <img src="images/aBank.jpg" alt="atm icon"> </p>
+                        <p class="atm" id="a001">
+                            <a class="btn btn-success btn-large" href="/select_terminal?terminalId=BankA001">A001</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                    <div class="span2">
+                        <p>
+                            <img src="images/aBank.jpg" alt="atm icon"> </p>
+                        <p class="atm" id="a002">
+                            <a class="btn btn-success btn-large" href="/select_terminal?terminalId=BankA002">A002</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                    <div class="span2">
+                        <p>
+                            <img src="images/bBank.jpg" alt="atm icon"> </p>
+                        <p class="atm" id="b001">
+                            <a class="btn btn-success btn-large" href="/select_terminal?terminalId=BankB001">B001</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                    <div class="span2">
+                        <p>
+                            <img src="images/bBank.jpg" alt="atm icon"> </p>
+                        <p class="atm" id="b002">
+                            <a class="btn btn-success btn-large" href="/select_terminal?terminalId=BankB002">B002</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                    <!--/span-->
+                    <div class="span2">
+                        <p>
+                            <img src="images/cBank.jpg" alt="atm icon"> </p>
+                        <p class="atm" id="c001">
+                            <a class="btn btn-success btn-large" href="/select_terminal?terminalId=BankC001">C001</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                    <div class="span2">
+                        <p>
+                            <img src="images/cBank.jpg" alt="atm icon"> </p>
+                        <p class="atm" id="c002">
+                            <a class="btn btn-success btn-large" href="/select_terminal?terminalId=BankC002">C002</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                </div>
+                <!--/row-->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

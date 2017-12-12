@@ -84,8 +84,8 @@ body{
     overflow-x: hidden;
     overflow-y: auto;
     position: absolute;
-    /* width: 700px; */
-    min-width: 700px;
+    width: 50%;
+    min-width: 500px;
     right: 0;
     top: 0;
 }
@@ -152,6 +152,7 @@ img {
 .events_list li {
     position: relative;
     height: 98px;
+    width: 240px;
 }
 
 .events_list .ic_events {

@@ -1,9 +1,15 @@
 
-BTM:
-startHub.sh  --> getInfo.js
+CentOS:
+startCen.sh --> app.js & wsServer.js
 
-ATM serv 1-3:
-startNetMon.sh --> network.js
+BTM:
+startBtm.sh  --> getInfo.js
+
+ATM serv 1:
+startServ1.sh --> network.js & app.js
 
 ATM serv2:
-startBlockRrc.sh --> blockTrx.js
+startServ2.sh --> network.js & app.js & blockTrx.js
+
+ATM serv 3:
+startServ3.sh --> network.js & app.js

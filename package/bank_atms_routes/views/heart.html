@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+.heart-shape{  
+    position: absolute;  
+    top: 50px;
+    right: 150px;
+    width: 50px;  
+    height: 50px;  
+    -webkit-transform: rotate(45deg);  
+    -moz-transform: rotate(45deg);  
+    -ms-transform: rotate(45deg);  
+    -o-transform: rotate(45deg);  
+    transform: rotate(45deg);  
+    background-color: #5bb75b;
+    /* -moz-box-shadow:-5px -5px 5px #999 inset;
+    -webkit-box-shadow:-5px -5px 5px #999 inset;
+    box-shadow:-5px -5px 5px #999 inset; */
+}  
+.heart-shape:before,  
+.heart-shape:after{  
+    position: absolute;  
+    width: 50px;  
+    height: 50px;  
+    content: '';  
+    -webkit-border-radius: 50%;  
+    -moz-border-radius: 50%;  
+    -o-border-radius: 50%;  
+    border-radius: 50%;  
+    background-color: #5bb75b;  
+}  
+.heart-shape:before{  
+    bottom: 0px;  
+    left: -28px;  
+}  
+.heart-shape:after{  
+    top: -28px;  
+    right: 0px;  
+}  
+    </style>
+</head>
+<body>
+        <div class="heart-shape"></div> 
+</body>
+</html>

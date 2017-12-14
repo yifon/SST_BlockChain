@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SST BlockChain</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="styles/example-fluid-layout.css">
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <!-- logo摆放处 -->
+    <header role="banner">
+        <div class="header-wrap">
+            <img class="site-logo" src="images/hsbc_logo_sc.png" alt="SST Blockchain">
+        </div>
+    </header>
+    <section class="athp-section athp-lead-section">
+        <video class="vdo_inner" poster="videos/poster.png" id="bgvid" autoplay="" loop="">
+            <source src="videos/herobanner.webm" type="video/webm">
+            <source src="videos/herobanner.ogv" type="video/ogg">
+            <source src="videos/herobanner.mp4" type="video/mp4">
+        </video>
+    </section>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="leaderboard">
+                    <h1>交易成功</h1>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12 pwd-area">
+                        <!--查询余额：打印余额，提示取卡，点确认后回首页-->
+                        <!--取款：打印取款金额，提示取卡，点确认后回首页-->
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="txn-value" class="control-label" id="inq-label" >感谢使用，您的账户 <%=cardNumber%> 余额为：<%=balance%></label>
+                                <label for="txn-value" class="control-label" id="cwd-label">转入账户<%=to_cardNumber%> 金额为：</label>
+                                <p class="form-control txn-value" id="txn-value"><%=amount%></p>
+                            </div>
+                            <div class="form-group">
+                                <a id="success" class="btn btn-success btn-large" href="/">取卡</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SST BlockChain</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="styles/example-fluid-layout.css">
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <!-- logo摆放处 -->
+    <header role="banner">
+        <div class="header-wrap">
+            <img class="site-logo" src="images/hsbc_logo_sc.png" alt="SST Blockchain">
+        </div>
+    </header>
+    <section class="athp-section athp-lead-section">
+        <video class="vdo_inner" poster="videos/poster.png" id="bgvid" autoplay="" loop="">
+            <source src="videos/herobanner.webm" type="video/webm">
+            <source src="videos/herobanner.ogv" type="video/ogg">
+            <source src="videos/herobanner.mp4" type="video/mp4">
+        </video>
+    </section>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="leaderboard">
+                    <h1>请选择交易的银行卡</h1>
+                </div>
+                <!--这里可以考虑用id来绑定不同的卡号，再跟后台交互-->
+                <div class="row-fluid">
+                    <div class="span3 card">
+                        <p>
+                            <img src="images/card.png" alt="card icon"> </p>
+                        <p id="">
+                            <a class="btn btn-success btn-large" href="/enter_account?to_card_number=6227497208154181&to_issue_bank=bank_a">6227497208154181(Bank A)</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                    <div class="span3 card">
+                        <p>
+                            <img src="images/card.png" alt="atm icon"> </p>
+                        <p id="">
+                            <a class="btn btn-success btn-large" href="/enter_account?to_card_number=6227509233341650&to_issue_bank=bank_a">6227509233341650(Bank A)</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                 
+                    <!--/span-->
+                    <div class="span3 card">
+                        <p>
+                            <img src="images/card.png" alt="atm icon"> </p>
+                        <p id="">
+                            <a class="btn btn-success btn-large" href="/enter_account?to_card_number=5227509233341650&to_issue_bank=bank_b">5227509233341650(Bank B)</a>
+                        </p>
+                    </div>
+					
+                    <!--/span-->
+                    <div class="span3 card">
+                        <p>
+                            <img src="images/card.png" alt="atm icon"> </p>
+                        <p id="">
+                            <a class="btn btn-success btn-large" href="/enter_account?to_card_number=4227497208154181&to_issue_bank=bank_c">4227497208154181(Bank C)</a>
+                        </p>
+                    </div>
+                    <!--/span-->
+                </div>
+                <!--/row-->
+				
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

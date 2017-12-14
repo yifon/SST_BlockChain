@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://serviceimp.bc.sst" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://serviceimp.bc.sst" xmlns:intf="http://serviceimp.bc.sst" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://serviceimp.bc.sst" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="transfer">
+    <complexType>
+     <sequence>
+      <element name="cardNumber_from" type="xsd:string"/>
+      <element name="pin" type="xsd:int"/>
+      <element name="amount" type="xsd:int"/>
+      <element name="cardNumber_to" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="transferResponse">
+    <complexType>
+     <sequence>
+      <element name="transferReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="request_account_records">
+    <complexType>
+     <sequence>
+      <element name="cardNumber" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="request_account_recordsResponse">
+    <complexType>
+     <sequence>
+      <element name="request_account_recordsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAccountRecords">
+    <complexType>
+     <sequence>
+      <element name="cardNumber" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAccountRecordsResponse">
+    <complexType>
+     <sequence>
+      <element name="getAccountRecordsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAccountBalance">
+    <complexType>
+     <sequence>
+      <element name="cardNumber" type="xsd:string"/>
+      <element name="pin" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAccountBalanceResponse">
+    <complexType>
+     <sequence>
+      <element name="getAccountBalanceReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="request_transaction">
+    <complexType>
+     <sequence>
+      <element name="data" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="request_transactionResponse">
+    <complexType>
+     <sequence>
+      <element name="request_transactionReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="downloadBins">
+    <complexType/>
+   </element>
+   <element name="downloadBinsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="downloadBinsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deletedBin">
+    <complexType>
+     <sequence>
+      <element name="bin" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deletedBinResponse">
+    <complexType>
+     <sequence>
+      <element name="deletedBinReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="pinVerify">
+    <complexType>
+     <sequence>
+      <element name="cardNumber" type="xsd:string"/>
+      <element name="pin" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="pinVerifyResponse">
+    <complexType>
+     <sequence>
+      <element name="pinVerifyReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addBins">
+    <complexType>
+     <sequence>
+      <element name="bin" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addBinsResponse">
+    <complexType>
+     <sequence>
+      <element name="addBinsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllcards">
+    <complexType/>
+   </element>
+   <element name="getAllcardsResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllcardsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cashWithdrawal">
+    <complexType>
+     <sequence>
+      <element name="cardNumber" type="xsd:string"/>
+      <element name="pin" type="xsd:int"/>
+      <element name="amount" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cashWithdrawalResponse">
+    <complexType>
+     <sequence>
+      <element name="cashWithdrawalReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="accountOpen">
+    <complexType>
+     <sequence>
+      <element name="cardHolder" type="xsd:string"/>
+      <element name="pin" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="accountOpenResponse">
+    <complexType>
+     <sequence>
+      <element name="accountOpenReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cashDeposit">
+    <complexType>
+     <sequence>
+      <element name="cardNumber" type="xsd:string"/>
+      <element name="pin" type="xsd:int"/>
+      <element name="amount" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="cashDepositResponse">
+    <complexType>
+     <sequence>
+      <element name="cashDepositReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="downloadBinsResponse">
+
+      <wsdl:part element="impl:downloadBinsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="accountOpenResponse">
+
+      <wsdl:part element="impl:accountOpenResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="transferRequest">
+
+      <wsdl:part element="impl:transfer" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="accountOpenRequest">
+
+      <wsdl:part element="impl:accountOpen" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="downloadBinsRequest">
+
+      <wsdl:part element="impl:downloadBins" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cashWithdrawalResponse">
+
+      <wsdl:part element="impl:cashWithdrawalResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="transferResponse">
+
+      <wsdl:part element="impl:transferResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountRecordsResponse">
+
+      <wsdl:part element="impl:getAccountRecordsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="request_account_recordsResponse">
+
+      <wsdl:part element="impl:request_account_recordsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountBalanceRequest">
+
+      <wsdl:part element="impl:getAccountBalance" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBinsResponse">
+
+      <wsdl:part element="impl:addBinsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllcardsRequest">
+
+      <wsdl:part element="impl:getAllcards" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cashWithdrawalRequest">
+
+      <wsdl:part element="impl:cashWithdrawal" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="request_account_recordsRequest">
+
+      <wsdl:part element="impl:request_account_records" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountBalanceResponse">
+
+      <wsdl:part element="impl:getAccountBalanceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cashDepositResponse">
+
+      <wsdl:part element="impl:cashDepositResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deletedBinRequest">
+
+      <wsdl:part element="impl:deletedBin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAccountRecordsRequest">
+
+      <wsdl:part element="impl:getAccountRecords" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBinsRequest">
+
+      <wsdl:part element="impl:addBins" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="request_transactionRequest">
+
+      <wsdl:part element="impl:request_transaction" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="request_transactionResponse">
+
+      <wsdl:part element="impl:request_transactionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deletedBinResponse">
+
+      <wsdl:part element="impl:deletedBinResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="pinVerifyResponse">
+
+      <wsdl:part element="impl:pinVerifyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="pinVerifyRequest">
+
+      <wsdl:part element="impl:pinVerify" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllcardsResponse">
+
+      <wsdl:part element="impl:getAllcardsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cashDepositRequest">
+
+      <wsdl:part element="impl:cashDeposit" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="GetBankAccountInfoImp">
+
+      <wsdl:operation name="transfer">
+
+         <wsdl:input message="impl:transferRequest" name="transferRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:transferResponse" name="transferResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="request_account_records">
+
+         <wsdl:input message="impl:request_account_recordsRequest" name="request_account_recordsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:request_account_recordsResponse" name="request_account_recordsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountRecords">
+
+         <wsdl:input message="impl:getAccountRecordsRequest" name="getAccountRecordsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAccountRecordsResponse" name="getAccountRecordsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountBalance">
+
+         <wsdl:input message="impl:getAccountBalanceRequest" name="getAccountBalanceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAccountBalanceResponse" name="getAccountBalanceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="request_transaction">
+
+         <wsdl:input message="impl:request_transactionRequest" name="request_transactionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:request_transactionResponse" name="request_transactionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="downloadBins">
+
+         <wsdl:input message="impl:downloadBinsRequest" name="downloadBinsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:downloadBinsResponse" name="downloadBinsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deletedBin">
+
+         <wsdl:input message="impl:deletedBinRequest" name="deletedBinRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deletedBinResponse" name="deletedBinResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pinVerify">
+
+         <wsdl:input message="impl:pinVerifyRequest" name="pinVerifyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:pinVerifyResponse" name="pinVerifyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBins">
+
+         <wsdl:input message="impl:addBinsRequest" name="addBinsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addBinsResponse" name="addBinsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllcards">
+
+         <wsdl:input message="impl:getAllcardsRequest" name="getAllcardsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllcardsResponse" name="getAllcardsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cashWithdrawal">
+
+         <wsdl:input message="impl:cashWithdrawalRequest" name="cashWithdrawalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:cashWithdrawalResponse" name="cashWithdrawalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="accountOpen">
+
+         <wsdl:input message="impl:accountOpenRequest" name="accountOpenRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:accountOpenResponse" name="accountOpenResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cashDeposit">
+
+         <wsdl:input message="impl:cashDepositRequest" name="cashDepositRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:cashDepositResponse" name="cashDepositResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="GetBankAccountInfoImpSoapBinding" type="impl:GetBankAccountInfoImp">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="transfer">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="transferRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="transferResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="request_account_records">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="request_account_recordsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="request_account_recordsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountRecords">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAccountRecordsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAccountRecordsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAccountBalance">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAccountBalanceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAccountBalanceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="request_transaction">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="request_transactionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="request_transactionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="downloadBins">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="downloadBinsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="downloadBinsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deletedBin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deletedBinRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deletedBinResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="pinVerify">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="pinVerifyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="pinVerifyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBins">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addBinsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addBinsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllcards">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllcardsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllcardsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cashWithdrawal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cashWithdrawalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cashWithdrawalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="accountOpen">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="accountOpenRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="accountOpenResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cashDeposit">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cashDepositRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cashDepositResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="GetBankAccountInfoImpService">
+
+      <wsdl:port binding="impl:GetBankAccountInfoImpSoapBinding" name="GetBankAccountInfoImp">
+
+         <wsdlsoap:address location="http://localhost:8080/Bank_system_A/services/GetBankAccountInfoImp"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

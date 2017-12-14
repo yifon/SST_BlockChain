@@ -14,17 +14,17 @@ function addLine(index, startId, endId) {
     var endTop = 0;
     //下述考虑起点在终点上方
     if (startY < endY) {
-        // if (startY + startH >= endY) {
-        //     startLeft = startX;
-        //     startTop = startY + startH / 2;
-        //     endLeft = endX;
-        //     endTop = endY + startH / 2;
-        // } else {
+        if (startY + startH >= endY) {
+            startLeft = startX;
+            startTop = startY + startH / 2;
+            endLeft = endX + endW;
+            endTop = endY + startH / 2;
+        } else {
             startLeft = startX + startW / 2;
             startTop = startY + startH;
-            endLeft = endX + endW / 2-2+"px";
-            endTop = endY-2+"px";
-
+            endLeft = endX + endW / 2;
+            endTop = endY;
+        }
     }
     //起点和终点在同一水平线上
     if (startY == endY) {
@@ -42,17 +42,26 @@ function addLine(index, startId, endId) {
     }
     //起点在终点下方
     if (startY > endY) {
-        // if (startY + startH >= endY) {
-        //     startLeft = startX;
-        //     startTop = startY + startH / 2;
-        //     endLeft = endX + endW;
-        //     endTop = endY + endH / 2;
-        // } else {
+        if (startY <= endH + endY) {
+            //起点在终点右边
+            if (startX > endX) {
+                startLeft = startX;
+                startTop = startY + startH / 2;
+                endLeft = endX - endW;
+                endTop = endY + endH / 2;
+            }
+            else {
+                startLeft = startX + startW;
+                startTop = startY + startH / 2;
+                endLeft = endX;
+                endTop = endY + endH / 2;
+            }
+        } else {
             startLeft = startX + startW / 2;
             startTop = startY;
-            endLeft = endX + endW / 2+2+"px";
-            endTop = endY + endH+2+"px";
-        // }
+            endLeft = endX + endW / 2;
+            endTop = endY + endH;
+        }
     }
 
     var line = "<line" + " id=line" + index + " xmlns='http://www.w3.org/2000/svg' stroke='#193f19' stroke-width='3' marker-end='url(#arrow)' stroke-dasharray='10,10'></line>";
@@ -226,15 +235,17 @@ var nodeArray = ["A001", "A002", "B001", "B002", "C001", "C002", "Blockchain", "
 *   CWD,INQ,DEP接口一样，监听informSupervisor
 */
 socket.on("informSupervisor", function (txnObj) {
-    console.log("交易类型：" + txnObj.txnType)
+    // console.log("交易类型：" + txnObj.txnType)
     console.log(txnObj.startNode);
     console.log(txnObj.nextNode);
-	setTimeout(function(){ if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
-        addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
-        addEvent(txnObj);
-        addFlash(txnObj.nextNode);
-    }},5000*txnObj.stepId);
-   
+    setTimeout(function () {
+        if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
+            addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
+            addEvent(txnObj);
+            addFlash(txnObj.nextNode);
+        }
+    }, 5000 * txnObj.stepId);
+
 })
 
 /**
@@ -257,16 +268,16 @@ socket.on("informSupervisor", function (txnObj) {
 *   TFR监听informSupervisorTFR
 */
 socket.on("informSupervisorTFR", function (txnObj) {
-    console.log("交易类型：" + txnObj.txnType)
-	setTimeout(function(){
-    if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
-       // if ((txnObj.txnType == "TFR")) {
+    // console.log("交易类型：" + txnObj.txnType)
+    setTimeout(function () {
+        if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
+            // if ((txnObj.txnType == "TFR")) {
             if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
                 addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
                 addEvent(txnObj);
                 addFlash(txnObj.nextNode);
             }
-       // }
-    }
-	},5000*txnObj.stepId);
+            // }
+        }
+    }, 5000 * txnObj.stepId);
 })

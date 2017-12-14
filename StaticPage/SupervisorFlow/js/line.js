@@ -248,13 +248,18 @@ socket.on("informSupervisor", function (txnObj) {
     // console.log("交易类型：" + txnObj.txnType)
     console.log(txnObj.startNode);
     console.log(txnObj.nextNode);
+    var time = 0;
+    if (txnObj.stepId == 1) {
+        time = 15000;
+    }
+    else time = 8000 * txnObj.stepId;
     setTimeout(function () {
         if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
             addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
             addEvent(txnObj);
             addFlash(txnObj.nextNode);
         }
-    }, 5000 * txnObj.stepId);
+    }, time);
 
 })
 
@@ -279,6 +284,11 @@ socket.on("informSupervisor", function (txnObj) {
 */
 socket.on("informSupervisorTFR", function (txnObj) {
     // console.log("交易类型：" + txnObj.txnType)
+    var time = 0;
+    if (txnObj.stepId == 1) {
+        time = 15000;
+    }
+    else time = 8000 * txnObj.stepId;
     setTimeout(function () {
         if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
             // if ((txnObj.txnType == "TFR")) {
@@ -289,5 +299,5 @@ socket.on("informSupervisorTFR", function (txnObj) {
             }
             // }
         }
-    }, 5000 * txnObj.stepId);
+    }, time);
 })

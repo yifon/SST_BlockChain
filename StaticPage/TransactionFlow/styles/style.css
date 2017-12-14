@@ -1,6 +1,8 @@
 body {
     background: url(../images/homescreen.jpeg) repeat-y top left;
     background-size: cover;
+    /* min-height: 800px; */
+    /* min-width: 1280px; */
 }
 .site-logo{
     left: 20px;
@@ -45,33 +47,28 @@ video{
     position: relative;
     left: 20%;
 }
-.btn{
-    /* border-radius: 10px; */
-    /* opacity: 0.8; */
-    /* font-size: 20px; */
-    /* margin-top: 20px; */
-}
-.btn :hover{
-    /* cursor: pointer; */
-}
 .txn{
     height: 200px;
     background-color: #5bb75b;
     border-radius: 50px;
-    text-align: center;
     opacity: 0.8;
 }
 .txn:hover{
     background-color: #3fa03f;
     opacity: 0.9;
 }
+.txn p{
+    text-align: center;
+    padding-top: 25%;
+}
 .txn a{
     font-size: 40px;
     /* width: 100%; */
     color: white;
     /* min-width: 300px; */
-    line-height: 200px;
+    line-height: 100%;
     height: 100%;
+    /* margin-top: 50px; */
 }
 .txn a:hover{
     cursor: pointer;
@@ -209,7 +206,7 @@ z-index: 99;
     padding-bottom: 100px; 
 }
 .heart-shape {
-    position: absolute;
+    position: fixed;
     z-index: 99;
     top: 40px;
     right: 250px;
@@ -230,7 +227,7 @@ box-shadow:-5px -5px 5px #999 inset; */
 
 .heart-shape:before,
 .heart-shape:after {
-    position: absolute;
+    position: fixed;
     width: 40px;
     height: 40px;
     content: '';
@@ -269,8 +266,8 @@ box-shadow:-5px -5px 5px #999 inset; */
 }
 
 .reminder {
-    position: absolute;
-    /* z-index: -1; */
+    position: fixed;
+    z-index: -1;
     right: 30px;
     top: 50px;
     width: 250px;

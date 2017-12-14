@@ -1,8 +1,6 @@
 body {
-    background: url(../images/homescreen.jpeg) no-repeat top left;
+    background: url(../images/homescreen.jpeg) repeat-y top left;
     background-size: cover;
-    /* min-height: 800px; */
-    /* min-width: 1280px; */
 }
 .site-logo{
     left: 20px;
@@ -40,75 +38,59 @@ video{
 }
 .card img:hover{
     cursor: pointer;
-    border: 1px solid #5bb75b;
+    border: 3px solid #5bb75b;
 }
 .atm{
     /* width: 14.89361702%; */
     position: relative;
     left: 20%;
 }
+.btn{
+    /* border-radius: 10px; */
+    /* opacity: 0.8; */
+    /* font-size: 20px; */
+    /* margin-top: 20px; */
+}
+.btn :hover{
+    /* cursor: pointer; */
+}
 .txn{
-    /* height: 200px; */
+    height: 200px;
     background-color: #5bb75b;
     border-radius: 50px;
+    text-align: center;
     opacity: 0.8;
 }
 .txn:hover{
     background-color: #3fa03f;
     opacity: 0.9;
 }
-.txn p{
-    text-align: center;
-    padding-top: 25%;
-}
 .txn a{
-    /* font-size: 40px; */
+    font-size: 40px;
     /* width: 100%; */
     color: white;
     /* min-width: 300px; */
-    line-height: 100%;
+    line-height: 200px;
     height: 100%;
-    /* margin-top: 50px; */
 }
 .txn a:hover{
     cursor: pointer;
     text-decoration: none;
 }
-/* 设置1024px以下分辨率的显示 */
-@media screen and (max-width:1024px){
-    .pwd-area{
-        margin-left: 20% !important;
-    }
-    .reminder {
-        right: 10px;
-    }
-    .heart-shape {
-        right: 230px;
-    }
-}
-/* 设置1024px以下分辨率的显示 */
-@media screen and (min-width:1025px){
-    .pwd-area{
-        margin-left: 20% !important;
-    }
-    .reminder {
-        right: 30px;
-    }
-    .heart-shape {
-        right: 250px;
-    }
-    .pwd-area .form-horizontal{
-        margin-left: 20%;
-    }
-}
 .pwd-area{
     /* position: absolute; */
     /* left: 10%; */
     width: 60% !important;
+    margin-left: 20% !important;
     height: 280px;
     line-height: 200px;
     margin-top: -100px;
     /* border: 1px rgb(233, 223, 223) dashed; */
+}
+.pwd-area .form-horizontal{
+    /* width: 50%; */
+    /* margin-top: 20px; */
+    margin-left: 20%;
 }
 .pwd-area .input-value{
     font-size: 200px;
@@ -222,58 +204,15 @@ z-index: 99;
     line-height: 50px;
     margin: 30px auto;
 }
-.cardRow1,.cardRow2{
-    display: none;
-}
-
-@media screen and (max-height:768px){
-    .cardRow2{
-        display: block;
-    }
-    .cardRow2 .spanBox{
-        margin-top: -120px;
-        margin-left: -10px;
-    }
-    .txn{
-        height: 160px;
-    }
-    .txn a{
-        font-size: 30px;
-    }
-}
-@media screen and (min-height:769px){
-    .cardRow1{
-        display: block;
-    }
-    .txn{
-        height: 200px;
-    }
-    .txn a{
-        font-size: 40px;
-    }
-}
-@media screen and (min-height:641px){
-    .spanBox{
-        padding-top:100px;
-        padding-bottom: 100px; 
-    }
-}
-@media screen and (max-height:640px){
-    .spanBox{
-        padding-top:10px;
-    }
-}
-@media screen and (min-height:641px){
-    .spanBox{
-        padding-top:100px;
-        padding-bottom: 100px; 
-    }
+.spanBox{
+    padding-top:100px;
+    padding-bottom: 100px; 
 }
 .heart-shape {
-    position: fixed;
+    position: absolute;
     z-index: 99;
     top: 40px;
-    /* right: 250px; */
+    right: 250px;
     width: 40px;
     height: 40px;
     -webkit-transform: rotate(45deg);
@@ -291,7 +230,7 @@ box-shadow:-5px -5px 5px #999 inset; */
 
 .heart-shape:before,
 .heart-shape:after {
-    position: fixed;
+    position: absolute;
     width: 40px;
     height: 40px;
     content: '';
@@ -330,9 +269,9 @@ box-shadow:-5px -5px 5px #999 inset; */
 }
 
 .reminder {
-    position: fixed;
-    z-index: -1;
-    /* right: 30px; */
+    position: absolute;
+    /* z-index: -1; */
+    right: 30px;
     top: 50px;
     width: 250px;
     height: 100px;

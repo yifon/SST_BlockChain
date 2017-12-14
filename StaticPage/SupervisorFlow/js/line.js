@@ -229,11 +229,12 @@ socket.on("informSupervisor", function (txnObj) {
     console.log("交易类型：" + txnObj.txnType)
     console.log(txnObj.startNode);
     console.log(txnObj.nextNode);
-    if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
+	setTimeout(function(){ if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
         addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
         addEvent(txnObj);
         addFlash(txnObj.nextNode);
-    }
+    }},5000*txnObj.stepId);
+   
 })
 
 /**
@@ -257,13 +258,15 @@ socket.on("informSupervisor", function (txnObj) {
 */
 socket.on("informSupervisorTFR", function (txnObj) {
     console.log("交易类型：" + txnObj.txnType)
+	setTimeout(function(){
     if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
-        // if ((txnObj.txnType == "TFR")) {
-        if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
-            addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
-            addEvent(txnObj);
-            addFlash(txnObj.nextNode);
-        }
-        // }
+       // if ((txnObj.txnType == "TFR")) {
+            if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
+                addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
+                addEvent(txnObj);
+                addFlash(txnObj.nextNode);
+            }
+       // }
     }
+	},5000*txnObj.stepId);
 })

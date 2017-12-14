@@ -15,10 +15,20 @@ function addLine(index, startId, endId) {
     //下述考虑起点在终点上方
     if (startY < endY) {
         if (startY + startH >= endY) {
-            startLeft = startX;
-            startTop = startY + startH / 2;
-            endLeft = endX + endW;
-            endTop = endY + startH / 2;
+            //起点在终点右边
+            if (startX > endX) {
+                startLeft = startX;
+                startTop = startY + startH / 2;
+                endLeft = endX + endW;
+                endTop = endY + startH / 2;
+            }
+            // 起点在终点左边
+            else {
+                startLeft = startX + startW;
+                startTop = startY + startH / 2;
+                endLeft = endX;
+                endTop = endY + startH / 2;
+            }
         } else {
             startLeft = startX + startW / 2;
             startTop = startY + startH;
@@ -47,7 +57,7 @@ function addLine(index, startId, endId) {
             if (startX > endX) {
                 startLeft = startX;
                 startTop = startY + startH / 2;
-                endLeft = endX - endW;
+                endLeft = endX + endW;
                 endTop = endY + endH / 2;
             }
             else {
@@ -60,7 +70,7 @@ function addLine(index, startId, endId) {
             startLeft = startX + startW / 2;
             startTop = startY;
             endLeft = endX + endW / 2;
-            endTop = endY + endH;
+            endTop = endY + endH - 2 + "px";
         }
     }
 

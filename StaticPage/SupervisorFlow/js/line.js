@@ -14,10 +14,17 @@ function addLine(index, startId, endId) {
     var endTop = 0;
     //下述考虑起点在终点上方
     if (startY < endY) {
-        startLeft = startX + startW / 2;
-        startTop = startY + startH;
-        endLeft = endX + endW / 2;
-        endTop = endY-5+"px";
+        // if (startY + startH >= endY) {
+        //     startLeft = startX;
+        //     startTop = startY + startH / 2;
+        //     endLeft = endX;
+        //     endTop = endY + startH / 2;
+        // } else {
+            startLeft = startX + startW / 2;
+            startTop = startY + startH;
+            endLeft = endX + endW / 2-2+"px";
+            endTop = endY-2+"px";
+
     }
     //起点和终点在同一水平线上
     if (startY == endY) {
@@ -35,10 +42,17 @@ function addLine(index, startId, endId) {
     }
     //起点在终点下方
     if (startY > endY) {
-        startLeft = startX + startH / 2;
-        startTop = startY;
-        endLeft = endX + endW / 2;
-        endTop = endY + endH+5+"px";
+        // if (startY + startH >= endY) {
+        //     startLeft = startX;
+        //     startTop = startY + startH / 2;
+        //     endLeft = endX + endW;
+        //     endTop = endY + endH / 2;
+        // } else {
+            startLeft = startX + startW / 2;
+            startTop = startY;
+            endLeft = endX + endW / 2+2+"px";
+            endTop = endY + endH+2+"px";
+        // }
     }
 
     var line = "<line" + " id=line" + index + " xmlns='http://www.w3.org/2000/svg' stroke='#193f19' stroke-width='3' marker-end='url(#arrow)' stroke-dasharray='10,10'></line>";
@@ -113,13 +127,13 @@ function addEvent(txnObj) {
             //informContent += "Debit Amount: " + txnObj.debitAmount + "; ";
         }
         if (txnObj.debitBank != "" && typeof (txnObj.debitBank) != "undefined") {
-            //informContent += "Debit Bank: " + txnObj.debitBank + "; ";
+            informContent += "Debit from: " + txnObj.debitBank + "; ";
         }
         if (txnObj.creditAccount != "" && typeof (txnObj.creditAccount) != "undefined") {
             //informContent += "Credit Account: " + txnObj.creditAccount + "; ";
         }
         if (txnObj.creditBank != "" && typeof (txnObj.creditBank) != "undefined") {
-            //informContent += "Credit Bank: " + txnObj.creditBank + "; ";
+            informContent += "Credit to: " + txnObj.creditBank + "; ";
         }
         if (txnObj.debitATM != "" && typeof (txnObj.debitATM) != "undefined") {
             //informContent += "Debit ATM: " + txnObj.debitATM + "; ";
@@ -244,12 +258,12 @@ socket.on("informSupervisor", function (txnObj) {
 socket.on("informSupervisorTFR", function (txnObj) {
     console.log("交易类型：" + txnObj.txnType)
     if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
-        if ((txnObj.txnType == "TFR")) {
-            if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
-                addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
-                addEvent(txnObj);
-                addFlash(txnObj.nextNode);
-            }
+        // if ((txnObj.txnType == "TFR")) {
+        if ($.inArray(txnObj.startNode, nodeArray) != -1 && $.inArray(txnObj.nextNode, nodeArray) != -1) {
+            addLine(txnObj.stepId, "#" + txnObj.startNode, "#" + txnObj.nextNode);
+            addEvent(txnObj);
+            addFlash(txnObj.nextNode);
         }
+        // }
     }
 })

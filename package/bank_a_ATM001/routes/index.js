@@ -15,6 +15,8 @@ var account = new accounts();
 //**********************//
 var txnType = 'INQ';
 var cardBank = '';
+var debit_bank = '';
+var credit_bank = '';
 var sourceATM = 'A001';
 var minerATM = 'A001';
 //**********************//
@@ -42,14 +44,33 @@ var checkDebitCallback = function(contractOutput){
 //confirmDebit(address _fromAtm, address _debitBank, address _creditBank, string _trxHash, int256 _amount, int256 _fee, int _status) 
 //to send request to atmp here
 	//alert to supv
-	 
-    callclient({txnType:txnType,stepId:2,startNode:'Blockchain',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
-    callclient({txnType:txnType,stepId:3,startNode:'A001',nextNode:'aBank',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
-	txn_request_atmp_incoming.request_debit(contractOutput, postDebitATMPResponse);
+	var check = contractOutput._trxHash.split('|');
+	if(check[4]==='cdp'){
+		console.log("cdp no need perform debit on bank system");
+	}else if(check[4]==='tfr'){
+		callclientTFR({txnType:txnType,stepId:2,startNode:'Blockchain',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+		callclientTFR({txnType:txnType,stepId:3,startNode:'A001',nextNode:'aBank',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+    }else{
+    	 callclient({txnType:txnType,stepId:2,startNode:'Blockchain',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+    	 callclient({txnType:txnType,stepId:3,startNode:'A001',nextNode:'aBank',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+    }
+    txn_request_atmp_incoming.request_debit(contractOutput, postDebitATMPResponse);
 
 };
 //the callback for CheckCredit event
 var checkCreditCallbak = function(contractOutput){
+	//for TFR /CDP 
+	var check = contractOutput._trxHash.split('|');
+	if(check[4]==='cdp'){
+	callclient({txnType:txnType,stepId:2,startNode:'Blockchain',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+    callclient({txnType:txnType,stepId:3,startNode:'A001',nextNode:'aBank',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+	}else if(check[4]==='tfr'){//handle TFR
+		callclientTFR({txnType:txnType,stepId:6,startNode:'Blockchain',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+		callclientTFR({txnType:txnType,stepId:7,startNode:'A001',nextNode:'aBank',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+	}else{
+		callclient({txnType:txnType,stepId:6,startNode:'Blockchain',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+	    callclient({txnType:txnType,stepId:7,startNode:'A001',nextNode:'aBank',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+	}
 	txn_request_atmp_incoming.request_credit(contractOutput, postCreditATMPResponse);
 	
 };
@@ -68,12 +89,35 @@ var contract = txn_request_out_going.initContract(contractInitVars, checkDebitCa
 //the function to be called when ATMP response is received
 //confirmDebit(address _fromAtm, address _debitBank, address _creditBank, string _trxHash, int256 _amount, int256 _fee, int _status)
 var postDebitATMPResponse = function(atmpRes, contractOutput){
-	callclient({txnType:txnType,stepId:4,startNode:'aBank',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
-	 callclient({txnType:txnType,stepId:5,startNode:'A001',nextNode:'Blockchain',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
-	contract.confirmDebit(contractOutput._fromAtm, contractOutput._debitBank, contractOutput._creditBank, contractOutput._trxHash, parseInt(contractOutput._amount.toString()), parseInt(contractOutput._fee.toString()), atmpRes, {from: contractInitVars.atmAdd, gas: 0x47b760});  
+	var check = contractOutput._trxHash.split('|');
+	if(check[4]==='cdp'){
+		console.log("cdp no need perform debit on bank system");
+	}else if(check[4]==='tfr'){//handle TFR
+		callclientTFR({txnType:txnType,stepId:4,startNode:'aBank',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+		callclientTFR({txnType:txnType,stepId:5,startNode:'A001',nextNode:'Blockchain',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+	}else{
+		callclient({txnType:txnType,stepId:4,startNode:'aBank',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+		 callclient({txnType:txnType,stepId:5,startNode:'A001',nextNode:'Blockchain',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+	}
+	
+	 contract.confirmDebit(contractOutput._fromAtm, contractOutput._debitBank, contractOutput._creditBank, contractOutput._trxHash, parseInt(contractOutput._amount.toString()), parseInt(contractOutput._fee.toString()), atmpRes, {from: contractInitVars.atmAdd, gas: 0x47b760});  
 };
 //confirmCredit(address _fromAtm, address _debitBank, address _creditBank,  string _trxHash, int256 _amount, int256 _fee, bool _feeFrDebitBank, int _status)
 var postCreditATMPResponse = function(atmpRes, contractOutput){
+	var check = contractOutput._trxHash.split('|');
+	if(check[4]==='cdp'){
+		 callclient({txnType:txnType,stepId:4,startNode:'aBank',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+		 callclient({txnType:txnType,stepId:5,startNode:'A001',nextNode:'Blockchain',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+	}else if(check[4]==='tfr'){//handle TFR
+		callclientTFR({txnType:txnType,stepId:8,startNode:'aBank',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+		callclientTFR({txnType:txnType,stepId:9,startNode:'A001',nextNode:'Blockchain',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+
+	}else{
+		 callclient({txnType:txnType,stepId:8,startNode:'aBank',nextNode:'A001',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+		 callclient({txnType:txnType,stepId:9,startNode:'A001',nextNode:'Blockchain',cardNumber:'',txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:'0',status:1});
+
+	}
+	
 	contract.confirmCredit(contractOutput._fromAtm, contractOutput._debitBank, contractOutput._creditBank, contractOutput._trxHash, parseInt(contractOutput._amount.toString()), parseInt(contractOutput._fee.toString()), contractOutput._feeFrDebitBank, atmpRes, {from: contractInitVars.atmAdd, gas: 0x47b760});  
 };
 
@@ -89,7 +133,12 @@ var commit = function(contractOutput){
 	//	_httpRes.end("end:"+contractOutput._status+" "+contractOutput._amount);
 		this.account.status = statuss[7];
 		this.account.balance = statuss[6];
-		callclient({txnType:txnType,stepId:6,startNode:'Blockchain',nextNode:'A001',cardNumber:statuss[0],txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:statuss[6],status:2});
+		if(statuss[4]==='tfr'){
+			callclientTFR({txnType:txnType,stepId:10,startNode:'Blockchain',nextNode:'A001',cardNumber:statuss[0],txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:statuss[6],status:2});
+		}else{
+			callclient({txnType:txnType,stepId:6,startNode:'Blockchain',nextNode:'A001',cardNumber:statuss[0],txnAmount:'0', cardBank:'Bank A',sourceATM:'', minerATM:minerATM,fee:'0',balance:statuss[6],status:2});
+		}
+		
 		_httpRes.redirect(routers_url+statuss[4]+'_result?cardNumber='+statuss[0]+'&status='+this.account.status+'&balance='+this.account.balance+'&amount='+this.account.amount+'&to_cardNumber='+statuss[1]);
 	}else{
 		console.log("ignore previous event");
@@ -114,6 +163,14 @@ var callclient = function(txnObj){
 	console.log('callclient'+txnObj);
 	
 	client.emit('informSupervisor', txnObj);
+	
+};
+
+var callclientTFR = function(txnObj){
+	
+	console.log('callclient'+txnObj);
+	
+	client.emit('informSupervisorTFR', txnObj);
 	
 };
 
@@ -256,16 +313,17 @@ exports.cdptxn = function(req, res) {
 	    thisHash = trxHash;
 		if(this.account.issue_bank===this_bank){
 			console.log('internal handling');
+			cardBank = 'Bank A';
 			var cdp = {data: this.account.card_number+'|'+'N/A'+'|'+this.account.pin+'|'+this.account.amount+'|'+'cdp'+'|'+trxHash+'|'+0+'|'+2000+'|'+0+'|'+'internal'+'|'+'Bank A'+'|'+'A001'};
 			
-			callclient({txnType:txnType,stepId:1,startNode:'A001',nextNode:'aBank',cardNumber:this.account.card_number,txn:this.account.amount,cardBank:'Bank A',sourceATM:'A001',fee:'0',balance:'0',status:1});
-		
+			 callclient({txnType:txnType,stepId:1,startNode:'A001',nextNode:'aBank',cardNumber:this.account.card_number,txnAmount:'',cardBank:cardBank,sourceATM:sourceATM,minerATM:minerATM,fee:'0',balance:'0',status:1});
+			 
 			txn_request_atmp.request_transaction(cdp, function(result){
 				var statuss = result.split('|');
 				this.account.status = statuss[7];
 				this.account.balance = statuss[6];
 				//alert to supv
-			    callclient({txnType:txnType,stepId:2,startNode:'aBank',nextNode:'A001',cardNumber:this.account.card_number,txn:this.account.amount,cardBank:'Bank A',sourceATM:'A001',fee:'0',balance:statuss[6],status:2});
+			    callclient({txnType:txnType,stepId:2,startNode:'aBank',nextNode:'A001',cardNumber:this.account.card_number,txnAmount:'',cardBank:cardBank,sourceATM:sourceATM,minerATM:minerATM,fee:'0',balance:statuss[6],status:2});
 	
 				res.redirect(routers_url+'cdp_result?cardNumber='+this.account.card_number+'&status='+this.account.status+'&balance='+this.account.balance+'&amount='+this.account.amount);
 		});
@@ -277,10 +335,14 @@ exports.cdptxn = function(req, res) {
 			var _creditBank;
 			if(this.account.issue_bank===bank_b){
 				_creditBank = BankB;
+				cardBank = 'Bank B';
 			}else if(this.account.issue_bank===bank_c){
-				
+				cardBank = 'Bank C';
 				_creditBank = BankC;
 			}
+			//alert to supv
+		    callclient({txnType:txnType,stepId:1,startNode:'A001',nextNode:'Blockchain',cardNumber:this.account.card_number,txnAmount:'0', cardBank:cardBank,sourceATM:sourceATM,minerATM:minerATM,fee:'0',balance:'0',status:1});
+		  
 			var contractInput ={
 					_fromAtm: contractInitVars.atmAdd, 
 					_debitBank:contractInitVars.ownerBank, //cdp debit bank = owner bank
@@ -293,7 +355,7 @@ exports.cdptxn = function(req, res) {
 	
 };
 exports.tfrtxn = function(req, res) {
-	
+	 txnType = 'TFR';
     console.log('tfrtxn');
     this.account={from_card_number:req.query.from_card_number,to_card_number:req.query.to_card_number, pin:req.query.pin,transaction_type:req.query.transaction_type,from_issue_bank: req.query.from_issue_bank, to_issue_bank: req.query.to_issue_bank, amount:req.query.amount};
 	console.log(this.account);
@@ -303,14 +365,17 @@ exports.tfrtxn = function(req, res) {
     thisHash = trxHash;
 	if(this.account.from_issue_bank===this_bank&&this.account.to_issue_bank===this_bank){
 		console.log('internal handling');
+		debit_bank = 'Bank A';
+		credit_bank = 'Bank A';
 		var tfr = {data: this.account.from_card_number+'|'+this.account.to_card_number+'|'+this.account.pin+'|'+this.account.amount+'|'+'tfr'+'|'+trxHash+'|'+0+'|'+2000+'|'+0+'|'+'internal'+'|'+'Bank A'+'|'+'A001'};
-		callclient({txnType:'TFR',stepId:1,startNode:'A001',nextNode:'aBank',cardNumber:this.account.card_number,cardBank:'Bank A',sourceATM:'A001',fee:'0',balance:'0',status:1});
+		callclientTFR({txnType:txnType,stepId:1,startNode:'A001',nextNode:'aBank',debitAmount:'',debitAccount:this.account.from_card_number,debitBank: debit_bank,creditAccount:this.account.to_card_number,creditBank:credit_bank,sourceATM:sourceATM,debitATM:'',creditATM:'',fee:'0',balance:'0',status:1});
+			
 		txn_request_atmp.request_transaction(tfr, function(result){
 			var statuss = result.split('|');
 			this.account.status = statuss[7];
 			this.account.balance = statuss[6];
 			//alert to supv
-		    callclient({txnType:'TFR',stepId:2,startNode:'aBank',nextNode:'A001',cardNumber:this.account.card_number,cardBank:'Bank A',sourceATM:'A001',fee:'0',balance:statuss[6],status:2});
+			callclientTFR({txnType:txnType,stepId:2,startNode:'aBank',nextNode:'A001',debitAmount:'',debitAccount:this.account.from_card_number,debitBank: debit_bank,creditAccount:this.account.to_card_number,creditBank:credit_bank,sourceATM:sourceATM,debitATM:'',creditATM:'',fee:'0',balance:statuss[6],status:2});
 
 			res.redirect(routers_url+'tfr_result?cardNumber='+this.account.from_card_number+'&status='+this.account.status+'&balance='+this.account.balance+'&amount='+this.account.amount+'&to_cardNumber='+statuss[1]);
 	});
@@ -323,22 +388,33 @@ exports.tfrtxn = function(req, res) {
 		var _debitBank;
 		if(this.account.from_issue_bank===bank_a){
 			_debitBank = BankA;
+			cardBank = 'Bank A';
+			debit_bank ='Bank A';
 		}else if(this.account.from_issue_bank===bank_b){
 			
 			_debitBank = BankB;
+			cardBank = 'Bank B';
+			debit_bank ='Bank B';
 		}else if(this.account.from_issue_bank===bank_c){
 			_debitBank = BankC;
+			cardBank = 'Bank C';
+			debit_bank ='Bank C';
 			
 		}
 		//****************credit bank*******************
 		if(this.account.to_issue_bank===bank_a){
 			_creditBank = BankA;
+			credit_bank = 'Bank A';
 		}else if(this.account.to_issue_bank===bank_b){
 			
 			_creditBank = BankB;
+			credit_bank = 'Bank B';
 		}else if(this.account.to_issue_bank===bank_c){
 			_creditBank = BankC;
+			credit_bank = 'Bank C';
 		}
+		//alert to supv
+		callclientTFR({txnType:txnType,stepId:1,startNode:'A001',nextNode:'Blockchain',debitAmount:'',debitAccount:this.account.from_card_number,debitBank: debit_bank,creditAccount:this.account.to_card_number,creditBank:credit_bank,sourceATM:sourceATM,debitATM:'',creditATM:'',fee:'0',balance:'0',status:1});
 		var contractInput ={
 				_fromAtm: contractInitVars.atmAdd, 
 				_debitBank:_debitBank, 

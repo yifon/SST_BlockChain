@@ -1,0 +1,73 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from GetBankAccountInfoImpService WSDL service -->
+
+  <service name="GetBankAccountInfoImp" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://serviceimp.bc.sst"/>
+      <parameter name="wsdlServiceElement" value="GetBankAccountInfoImpService"/>
+      <parameter name="schemaQualified" value="http://serviceimp.bc.sst"/>
+      <parameter name="wsdlServicePort" value="GetBankAccountInfoImp"/>
+      <parameter name="className" value="sst.bc.serviceimp.GetBankAccountInfoImpSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="GetBankAccountInfoImp"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="transfer" qname="operNS:transfer" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:transferReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cardNumber_from" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pin" xmlns:pns="http://serviceimp.bc.sst" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:amount" xmlns:pns="http://serviceimp.bc.sst" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:cardNumber_to" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="request_account_records" qname="operNS:request_account_records" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:request_account_recordsReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cardNumber" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAccountRecords" qname="operNS:getAccountRecords" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:getAccountRecordsReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cardNumber" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAccountBalance" qname="operNS:getAccountBalance" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:getAccountBalanceReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cardNumber" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pin" xmlns:pns="http://serviceimp.bc.sst" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="request_transaction" qname="operNS:request_transaction" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:request_transactionReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:data" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="downloadBins" qname="operNS:downloadBins" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:downloadBinsReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="deletedBin" qname="operNS:deletedBin" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:deletedBinReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:bin" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="pinVerify" qname="operNS:pinVerify" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:pinVerifyReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cardNumber" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pin" xmlns:pns="http://serviceimp.bc.sst" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addBins" qname="operNS:addBins" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:addBinsReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:bin" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAllcards" qname="operNS:getAllcards" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:getAllcardsReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="cashWithdrawal" qname="operNS:cashWithdrawal" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:cashWithdrawalReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cardNumber" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pin" xmlns:pns="http://serviceimp.bc.sst" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:amount" xmlns:pns="http://serviceimp.bc.sst" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="accountOpen" qname="operNS:accountOpen" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:accountOpenReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cardHolder" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pin" xmlns:pns="http://serviceimp.bc.sst" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="cashDeposit" qname="operNS:cashDeposit" xmlns:operNS="http://serviceimp.bc.sst" returnQName="retNS:cashDepositReturn" xmlns:retNS="http://serviceimp.bc.sst" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cardNumber" xmlns:pns="http://serviceimp.bc.sst" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pin" xmlns:pns="http://serviceimp.bc.sst" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:amount" xmlns:pns="http://serviceimp.bc.sst" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getAllcards getAccountRecords downloadBins accountOpen addBins getAccountBalance pinVerify transfer request_account_records cashDeposit cashWithdrawal deletedBin request_transaction"/>
+
+  </service>
+</deployment>

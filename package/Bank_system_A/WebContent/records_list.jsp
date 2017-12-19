@@ -15,19 +15,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <td class="border_left border_right border_bottom" height="400" valign="top" align="center">
         <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#999999" id="text">
         <tr class="tabletop">
-        <a href="/Bank_system_A/BankTransactionRecordServlet?method=list" >Get bank transaction record</a>
-            <td height="40" colspan="15" align="center">Bank transaction list </td>
+        <a href="/Bank_system_A/BankTransactionRecordServlet?method=list" >Get Bank A Transaction Record</a>
+            <td height="40" colspan="15" align="center">Bank A Transaction List </td>
 		  </tr>
           <tr class="tablemenu">
-            <td align="center">transactiontype</td> 
+            <td align="center">Transaction type</td> 
             <td align="center">Account</td> 
-            <td align="center">fromAccount</td> 
-            <td align="center">toAccount</td>
-            <td align="center">amount</td>  
-            <td align="center">fee</td>  
-            <td align="center">date</td>  
-            <td align="center">aqbank</td> 
-            <td align="center">atmid</td>
+            <td align="center">From Account</td> 
+            <td align="center">To Account</td>
+            <td align="center">Amount</td>  
+            <td align="center">Fee</td>  
+            <td align="center">Date</td>  
+            <td align="center">Operate Bank</td> 
+            <td align="center">Terminal ID</td>
           </tr>
  <c:forEach items="${transactionRecords}" var="obj" varStatus="status">
           <tr class="tabletd${status.index%2+1}">

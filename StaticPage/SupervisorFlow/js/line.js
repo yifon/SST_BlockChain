@@ -208,8 +208,8 @@ function addFlash(nextNode) {
     }
 }
 
-var socket = io("ws://39.108.142.194:7004");
-// var socket = io("ws://localhost:7004");
+// var socket = io("ws://39.108.142.194:7004");
+var socket = io("ws://localhost:7004");
 socket.emit("userName", "supervisor");
 
 //回到首页时，应刷新页面

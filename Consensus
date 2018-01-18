@@ -1,1 +1,3 @@
 共识最好的设计是模块化,例如Notary，共识算法的选择与应用场景高度相关，可信环境使用paxos 或者raft，带许可的联盟可使用pbft ，非许可链可以是pow，pos，ripple共识等，根据对手方信任度分级，自由选择共识机制，这样才是真的最优
+
+https://github.com/yifon/SST_BlockChain/blob/master/BlockChain%20ATM%20zh%201.1.pptx

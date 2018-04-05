@@ -5,9 +5,9 @@
 root@ubuntu-15:~# apt-get update
 root@ubuntu-15:~# apt-get install python gcc make g++
 
-//download node-v8.9.1.tar.gz
-tar -xzvf node-v8.9.1.tar.gz
-cd node-v8.9.1
+//download node-v8.11.1.tar.gz
+tar -xzvf node-v8.11.1.tar.gz
+cd node-v8.11.1
 ./configure
 make install
 

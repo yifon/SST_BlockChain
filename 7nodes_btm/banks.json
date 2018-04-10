@@ -1,26 +1,27 @@
 {
-	"contractAdd": "0x8182dd293942ff6839e6e8c8a71981bb8ad655e5",	
+	"contractAdd": "0x1932c48b2bf8102ba33b4a6b545c32236e342f34",	
 	
 	"accounts" : 
 	[
-		{"name" : "BTM", "address":"0x8c632e1968c26ecc1f8fa82ac5cf9c4e1ea5884a", "balance":0,
+
+		{"name" : "BTM", "address":"0xed9d02e382b34818e88b88a309c7fe71e65f419d", "balance":0,
 			"atms": []
 
 		},
-		{"name" : "BankA", "address":"0x01751f1b5a22aaee0824d68b888f2190a663d768", "balance":0,
+		{"name" : "BankA", "address":"0x44abb21daa367da382b810bd233a4848e1723f2c", "balance":0,
 			"atms": [
 				{
 				"name": "ATM01",
 				"address":"0xca843569e3427144cead5e4d5999a3d0ccf92b8e",
-				"ip":"119.23.28.88",
+				"ip":"139.159.220.139",
 				"port":7101,
 				"isConnected": true,
 				"balance":0
 				},
 				{
 				"name": "ATM02",
-				"address":"0x81743ae6efb798ae288fa724aace76dcf8835e37",
-				"ip":"119.23.28.88",
+				"address":"0x0fbdc686b912d7722dc86510934589e0aaf3b55a",
+				"ip":"139.159.220.139",
 				"port":7102,
 				"isConnected": true,
 				"balance":0
@@ -28,12 +29,12 @@
 			]
 
 		},
-		{"name" : "BankB", "address":"0x8bdce7b955646a7c620565be1117edb77c101e9b", "balance":0,
+		{"name" : "BankB", "address":"0x1abddf1809a19487d59138126dc647864b3f9606", "balance":0,
 			"atms": [
 				{
 				"name": "ATM01",
 				"address":"0x9186eb3d20cbd1f5f992a950d808c4495153abd5",
-				"ip":"120.79.43.12",
+				"ip":"139.159.220.163",
 				"port":7101,
 				"isConnected": true,
 				"balance":0
@@ -41,7 +42,7 @@
 				{
 				"name": "ATM02",
 				"address":"0x0638e1574728b6d862dd5d3a3e0942c3be47d996",
-				"ip":"120.79.43.12",
+				"ip":"139.159.220.163",
 				"port":7102,
 				"isConnected": true,
 				"balance":0
@@ -49,20 +50,20 @@
 			]
 
 		},
-		{"name" : "BankC", "address":"0xed9d02e382b34818e88b88a309c7fe71e65f419d", "balance":0,
+		{"name" : "BankC", "address":"0x80f6fb162fcef275239fa9597940363a7b0367e7", "balance":0,
 			"atms": [
 				{
 				"name": "ATM01",
-				"address":"0xfc1cb1978f2435c8f2564d2c801f399d11479d0f",
-				"ip":"120.79.41.102",
+				"address":"0x584edcbaf9ef743af9a199bb815969a995a01363",
+				"ip":"139.159.221.196",
 				"port":7101,
 				"isConnected": true,
 				"balance":0
 				},
 				{
 				"name": "ATM02",
-				"address":"0xc2376f4675a774f120ea688c4756ae49a7020ccd",
-				"ip":"120.79.41.102",
+				"address":"0xa46de30336519cb9fd9491cedc6ab1582d9fd74c",
+				"ip":"139.159.221.196",
 				"port":7102,
 				"isConnected": true,
 				"balance":0

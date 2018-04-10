@@ -8,7 +8,7 @@
 			"atms": []
 
 		},
-		{"name" : "BankA", "address":"0x44abb21daa367da382b810bd233a4848e1723f2c", "balance":0,
+		{"name" : "BankA", "address":"0x0fbdc686b912d7722dc86510934589e0aaf3b55a", "balance":0,
 			"atms": [
 				{
 				"name": "ATM01",
@@ -20,7 +20,7 @@
 				},
 				{
 				"name": "ATM02",
-				"address":"0x0fbdc686b912d7722dc86510934589e0aaf3b55a",
+				"address":"0x844c6ac6d3082c8a27d254cf17cf9fb5fd1fc0a7",
 				"ip":"139.159.220.139",
 				"port":7102,
 				"isConnected": true,
@@ -29,7 +29,7 @@
 			]
 
 		},
-		{"name" : "BankB", "address":"0x1abddf1809a19487d59138126dc647864b3f9606", "balance":0,
+		{"name" : "BankB", "address":"0x4b9391baaa142a6df9c9f1e7b0f1a7fecfc9fcf8", "balance":0,
 			"atms": [
 				{
 				"name": "ATM01",
@@ -50,11 +50,11 @@
 			]
 
 		},
-		{"name" : "BankC", "address":"0x80f6fb162fcef275239fa9597940363a7b0367e7", "balance":0,
+		{"name" : "BankC", "address":"0x5f78a6c4c46f2f5fc93a7401c97d6fef2c669b9f", "balance":0,
 			"atms": [
 				{
 				"name": "ATM01",
-				"address":"0x584edcbaf9ef743af9a199bb815969a995a01363",
+				"address":"0xc1e809a4a4c44a3cf3ee6732f25e2160df436121",
 				"ip":"139.159.221.196",
 				"port":7101,
 				"isConnected": true,
@@ -62,7 +62,7 @@
 				},
 				{
 				"name": "ATM02",
-				"address":"0xa46de30336519cb9fd9491cedc6ab1582d9fd74c",
+				"address":"0x4c0489c1834d3e53c7731c039c8c342bfe517548",
 				"ip":"139.159.221.196",
 				"port":7102,
 				"isConnected": true,

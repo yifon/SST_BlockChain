@@ -1,0 +1,33 @@
+
+ATMP Interface
+http://39.108.142.194:8000/Bank_system_A/services/GetBankAccountInfoImp?wsdl
+
+http://39.108.142.194:8000/Bank_system_B/services/GetBankAccountInfoImp?wsdl
+
+http://39.108.142.194:8000/Bank_system_C/services/GetBankAccountInfoImp?wsdl
+
+
+
+screen control address
+
+http://39.108.142.194:3000/
+
+
+transacion record for Banks address
+
+http://39.108.142.194:8000/Bank_system_A/records_list.jsp
+http://39.108.142.194:8000/Bank_system_B/records_list.jsp
+http://39.108.142.194:8000/Bank_system_C/records_list.jsp
+
+    
+url for ATMC 
+
+
+var BankA001_url ='http://139.159.220.139:6100/';
+var BankA002_url ='http://139.159.220.139:6200/';
+
+var BankB001_url ='http://139.159.220.163:6100/';
+var BankB002_url ='http://139.159.220.163:6200/';
+
+var BankC001_url ='http://139.159.221.196:6100/';
+var BankC002_url ='http://139.159.221.196:6200/';
